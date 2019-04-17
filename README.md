@@ -15,7 +15,7 @@ Open the repository folder in VSCode, and create a folder for your work:
 
 ## Git Commands
 
-- `git log` - print a log of recent commits (scroll to the top to see most recent, then type `q` to quit) bopui
+- `git log` - print a log of recent commits (scroll to the top to see most recent, then type `q` to quit)
 - `git status` - print status of your local copy
 - `git add .` - stage "unstaged files" (red) so they're ready to commit
 - `git status` - run this again, the staged files should now be green
