@@ -3,15 +3,17 @@ A sandbox for students to manage their code
 
 ## Setup
 
-In a terminal, navigate to a folder where you'd like to keep your local copy, then run:
+1. In a terminal, navigate to a folder where you'd like to keep your local copy, then run:
 
 ```
 git clone git@github.com:hackupstate/careers-in-code-sandbox.git
 ```
 
-Open the repository folder in VSCode, and create a folder for your work:
+2. Open the repository folder in VSCode, and create a folder for your work:
 
 ![Create folder in VSCode](https://imgur.com/download/fSJkE4v)
+
+3. Remember to add a `README.md` file (or at least one file of any kind) so that Git will have something to commit!
 
 ## Git Commands
 
