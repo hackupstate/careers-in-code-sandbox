@@ -21,4 +21,4 @@ Open the repository folder in VSCode, and create a folder for your work:
 - `git status` - run this again, the staged files should now be green
 - `git commit -m "my message"` - commit the staged files with a message
 - `git pull` - make sure you have the latest from the cloud
-- `git push` - push your new commit up to GitHub (edited) 
+- `git push` - push your new commit up to GitHub
