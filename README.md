@@ -9,7 +9,7 @@ A sandbox for students to manage their code
 git clone git@github.com:hackupstate/careers-in-code-sandbox.git
 ```
 
-2. Open the repository folder in VSCode, and create a folder for your work:
+2. Open the cloned repository in VSCode, and create a folder for your work:
 
 ![Create folder in VSCode](https://imgur.com/download/fSJkE4v)
 
