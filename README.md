@@ -13,7 +13,7 @@ git clone git@github.com:hackupstate/careers-in-code-sandbox.git
 
 ![Create folder in VSCode](https://imgur.com/download/fSJkE4v)
 
-3. Remember to add a `README.md` file (or at least one file of any kind) so that Git will have something to commit!
+3. Remember to add a `README.md` file to your folder (or at least one file of any kind) so that Git will have something to commit!
 
 ## Git Commands
 
