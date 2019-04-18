@@ -1,0 +1,15 @@
+{
+  "name": "21-card-trick",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cards": "^1.0.1",
+    "prompt-sync": "^4.1.6"
+  }
+}
