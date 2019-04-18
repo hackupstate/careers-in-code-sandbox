@@ -1,5 +1,5 @@
 const { decks } = require('cards');
-const prompt = require('prompt-sync');
+const prompt = require('prompt-sync')();
 
 const SUIT_SYMBOLS = {
   clubs: '♣',
@@ -33,4 +33,18 @@ function renderCardRows(cardRows) {
   });
 }
 
-renderCardRows(dealCardRows());
+function promptForRowIndex() {
+  let rowNumber;
+
+  while(!(rowNumber >= 1 && rowNumber <= 3)) {
+    if (rowNumber !== undefined) {
+      console.log('Try again!');
+    }
+    rowNumber = prompt('Which row is your card in? ');
+    rowNumber = parseInt(rowNumber);
+  }
+
+  return rowNumber - 1;
+}
+
+console.log(promptForRowIndex());
