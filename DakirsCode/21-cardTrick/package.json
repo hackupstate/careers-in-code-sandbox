@@ -1,0 +1,15 @@
+{
+  "name": "21-cardtrick",
+  "version": "1.0.0",
+  "description": "mathmatical card trick",
+  "main": "index.js",
+  "scripts": {
+    "test": "test the cards"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cards": "^1.0.1",
+    "prompt-sync": "^4.1.6"
+  }
+}
