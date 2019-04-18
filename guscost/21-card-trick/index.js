@@ -44,6 +44,9 @@ function cardToSymbol(card) {
 // Given our three rows of cards as an argument,
 // draw them in the console as symbols
 function renderCardRows(cardRows) {
+
+  // Loop through each row and run this function
+  // The function will be passed the current row AND its index
   cardRows.forEach(function (cardRow, i) {
 
     // This transforms each card object in the array into a string
@@ -54,6 +57,7 @@ function renderCardRows(cardRows) {
     const cardRowString = cardSymbols.join('\t');
 
     // Log the row to the console!
+    // i is the array index, so we need to add one for human numbers
     console.log(`Row ${i + 1}:\t\t${cardRowString}`);
   });
 }
