@@ -87,14 +87,4 @@ function promptForRowIndex() {
   return rowNumber - 1;
 }
 
-function reDealCardRows(cardRows, selectedRowIndex) {
-  const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
-
-  const pileOfCards = [
-    ...cardRows[0],
-    ...selectedRow,
-    ...cardRows[1]
-  ];
-
-  
-}
+console.log(renderCardRows(dealCardRows));
