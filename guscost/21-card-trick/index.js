@@ -114,7 +114,8 @@ function promptForRowIndex() {
 function reDealCardRows(cardRows, selectedRowIndex) {
 
   // Splice out just the selected row (this *mutates* cardRows!)
-  // Mutating arguments is generally bad, but we'll allow it here
+  // Mutating arguments is generally bad (it's a kind of side-effect!),
+  // but we'll allow it here
   const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
 
   // Move the selected row "in between" the other two rows
