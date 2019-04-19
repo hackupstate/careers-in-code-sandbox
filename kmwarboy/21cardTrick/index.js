@@ -87,4 +87,20 @@ function promptForRowIndex() {
   return rowNumber - 1;
 }
 
-console.log(promptForRowIndex());
+// console.log(promptForRowIndex());
+
+// console.log(renderCardRows(dealCardRows()));
+
+function reDealCardRows(cardRows, selectedRowIndex) {
+  const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
+
+  const pileOfCards = [
+    ...cardRows[0],
+    ...selectedRow,
+    ...cardRows[1]
+  ];
+
+  // console.log(pileOfCards);
+}
+
+// reDealCardRows(dealCardRows(), 0);
