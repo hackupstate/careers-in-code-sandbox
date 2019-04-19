@@ -128,7 +128,7 @@ function reDealCardRows(cardRows, selectedRowIndex) {
 
   // Move the selected row "in between" the other two rows
   // Also flatten all three rows into one pile with the ... ("spread") operator
-  // (cardRows only has two items in it, since we removed the selected one!)
+  // (remainingRowIndices has two items, since we removed the selected index!)
   const pileOfCards = [
     ...cardRows[remainingRowIndices[0]],
     ...cardRows[selectedRowIndex],
