@@ -96,12 +96,5 @@ function reDealCardRows(cardRows, selectedRowIndex) {
     ...cardRows[1]
   ];
 
-  const newRows = [[], [], []];
-  for (let i = 0; i < 21; i++) {
-    newRows[i % 3].push(pileOfCards[i]);
-  }
-
-  return newRows;
+  
 }
-
-
