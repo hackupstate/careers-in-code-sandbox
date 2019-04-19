@@ -113,18 +113,26 @@ function promptForRowIndex() {
 // Place the selected row between the other two rows and re-deal
 function reDealCardRows(cardRows, selectedRowIndex) {
 
-  // Splice out just the selected row (this *mutates* cardRows!)
-  // Mutating arguments is generally bad (it's a kind of side-effect!),
-  // but we'll allow it here
-  const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
+  // // DEPRECATED: Don't mutate the function arguments
+  // // Splice out just the selected row (this *mutates* cardRows!)
+  // // Mutating arguments is generally bad (it's a kind of side-effect!),
+  // // but we'll allow it here
+  // const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
+
+  // IMPROVED: Splice out the selected index from a new array of *just* indices
+  // We already have the selected index, so ignore what the splice returns
+  // If we do not mutate cardRows, reDealCardRows has no side-effects!
+  // There is also a "functional" way to do this with .filter (similar to .map)
+  const remainingRowIndices = [0, 1, 2];
+  remainingRowIndices.splice(selectedRowIndex, 1);
 
   // Move the selected row "in between" the other two rows
   // Also flatten all three rows into one pile with the ... ("spread") operator
   // (cardRows only has two items in it, since we removed the selected one!)
   const pileOfCards = [
-    ...cardRows[0],
-    ...selectedRow,
-    ...cardRows[1]
+    ...cardRows[remainingRowIndices[0]],
+    ...cardRows[selectedRowIndex],
+    ...cardRows[remainingRowIndices[1]]
   ];
 
   // "Deal" this pile into three new rows
