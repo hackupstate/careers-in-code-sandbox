@@ -72,6 +72,8 @@ function renderCardRows(cardRows) {
 
     // This transforms each card object in the array into a string
     // e.g. cardRow[0] might turn into '7♣'
+    // Also run our copied "shuffle" function to shuffle *only* the symbols!
+    // This lets the computer keep track of the order of cards internally
     const cardSymbols = shuffle(cardRow.map(cardToSymbol));
 
     // Join all of the card symbols together (with tabs in between)
@@ -152,7 +154,7 @@ function doTheTrick() {
     cardRows = reDealCardRows(cardRows, selectedRowIndex);
   }
 
-  // We updated the selected row *after* rendering, but we need to check it
+  // We update the selected row *after* rendering, but we need to check it
   // *before* rendering, so initialize it (as mutable!) outside the loop
   let selectedRow;
 
