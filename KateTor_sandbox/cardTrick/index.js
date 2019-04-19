@@ -51,6 +51,46 @@ function promptForRowIndex(){
 
     return rowNumber - 1;
 }
+// console.log(renderCardRows(dealCardRows()));
+// console.log(promptForRowIndex());
 
-console.log(promptForRowIndex());
+function redDealCardRows(cardRows, selectedRowIndex){
+    const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
+
+    const pileofCards = [
+        ...cardRows[0], 
+        ...selectedRow,
+        ...cardRows[1]
+    ];
+
+    const newRows = [[], [], []];
+    for (let i = 0; i < 21; i++){
+        newRows[i % 3].push(pileofCards[i]);
+    }
+
+    return newRows;
+}
+
+function doTheTrick() {
+    
+    let cardRows = dealCardRows();
+
+    for (let i = 0; i < 2; i++) {
+        const selectedRowIndex = promptForRowIndex();
+        cardRows = redDealCardRows(cardRows, selectedRowIndex);
+    }
+
+    // renderCardRows(cardRows);
+    let selectedRow;
+    while(selectedRow !== 1) {
+        renderCardRows(cardRows);
+        selectedRow = promptForRowIndex();
+        cardRows = redDealCardRows(cardRows, selectedRow);
+    }
+
+    const userCard = cardRows[1][3];
+    console.log("Your card is ${cardToSymbol(userCard)}");
+}
+doTheTrick();
+
 
