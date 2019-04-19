@@ -16,7 +16,7 @@ const SUIT_SYMBOLS = {
 
 // Get three rows of seven cards each
 // We could loop three times instead, but it's almost not worth it
-function dealCardRows() {
+function initializeCardRows() {
 
   // Create a brand-new deck of cards, scoped to this function
   const deck = new decks.StandardDeck();
@@ -41,6 +41,27 @@ function cardToSymbol(card) {
   return card.rank.shortName + SUIT_SYMBOLS[card.suit.name];
 }
 
+// Shuffle function we copied from Stack Overflow
+// https://stackoverflow.com/a/2450976
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 // Given our three rows of cards as an argument,
 // draw them in the console as symbols
 function renderCardRows(cardRows) {
@@ -51,7 +72,7 @@ function renderCardRows(cardRows) {
 
     // This transforms each card object in the array into a string
     // e.g. cardRow[0] might turn into '7♣'
-    const cardSymbols = cardRow.map(cardToSymbol);
+    const cardSymbols = shuffle(cardRow.map(cardToSymbol));
 
     // Join all of the card symbols together (with tabs in between)
     const cardRowString = cardSymbols.join('\t');
@@ -95,5 +116,34 @@ function reDealCardRows(cardRows, selectedRowIndex) {
     ...cardRows[1]
   ];
 
-  
+  const newRows = [[], [], []];
+  for (let i = 0; i < 21; i++) {
+    newRows[i % 3].push(pileOfCards[i]);
+  }
+
+  return newRows;
 }
+
+function doTheTrick() {
+
+  let cardRows = initializeCardRows();
+  console.log('Pick a card, and remember it.')
+
+  for(let i = 0; i < 2; i++) {
+    renderCardRows(cardRows);
+    const selectedRowIndex = promptForRowIndex();
+    cardRows = reDealCardRows(cardRows, selectedRowIndex);
+  }
+
+  let selectedRow;
+  while (selectedRow !== 1) {
+    renderCardRows(cardRows);
+    selectedRow = promptForRowIndex();
+    cardRows = reDealCardRows(cardRows, selectedRow);
+  }
+
+  const userCard = cardRows[1][3];
+  console.log(`Your card is: ${cardToSymbol(userCard)}`);
+}
+
+doTheTrick();
