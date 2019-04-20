@@ -98,3 +98,6 @@ function reDealCardRows(cardRows, selectedRowIndex) {
 
   
 }
+
+renderCardRows(dealCardRows());
+
