@@ -3,7 +3,7 @@ var theNumber=0;
 while (theNumber<100){
     theNumber++;
     if (theNumber%3==0 && theNumber%5==0){
-        console.log("Fizz Buzz");
+        console.log("FizzBuzz");
     }
     else if(theNumber%5==0){
         console.log("Buzz")
