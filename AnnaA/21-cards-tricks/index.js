@@ -15,6 +15,7 @@ function dealCardRows() {
   cardRows.push(deck.draw(7));
   return cardRows;
 }
+
 function cardToSymbol(card) {
   return card.rank.shortName + SUIT_SYMBOLS[card.suit.name];
 }
@@ -46,6 +47,29 @@ function reDealCardRows(cardRow,selectedRowIndex){
     ...selectedRow,
     ...cardRow[1]
   ];
-  console.log(pileOfCards);
+  const newRows = [[], [], []];
+  for (let i = 0; i < 21; i++){
+    newRows [i% 3].push(pileOfCards[i]);
+  }
+  return newRows
 }
+function doTheTrick(){
+  let cardRows = initializeCardRows();
+
+  for (let i = 0; i < 2; i++){
+    renderCardRows (cardRows);
+    const selectedRowIndex = promptForRowIndex();
+  }
+  let selectedRow;
+  while (selectedRows !== 1){
+    renderCardRows(cardRows);
+    selectedRow = promptForRowIndex();
+    cardRows = reDealCardRows (cardRows, selectedRow);
+  
+}
+  const userCard = cardRows[1][3]
+  console.log (`Your card is: ${cardToSymbol(userCard)}`);
+  
+}
+doTheTrick();
 
