@@ -56,14 +56,14 @@ renderCardRows(dealCardRows());
 function reDealCardRows(cardRows, selectedRowIndex){
     const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
 
-    //Now we have our row, and the other two rows are separated. So we make a new pile of cards with our row in the middle. ... is known as a spread operator.
+//Now we have our row, and the other two rows are separated. So we make a new pile of cards with our row in the middle. ... is known as a spread operator.
 
     const pileOfCards = [
         ...cardRows[0],
         ...selectedRow,
         ...cardRows[1]
       ];
-    // console.log(" this is the pile of cards", pileOfCards);npm install
+// console.log(" this is the pile of cards", pileOfCards);npm install
 
 //reDealCardRows(dealCardRows(), 0);
 
@@ -76,23 +76,23 @@ function reDealCardRows(cardRows, selectedRowIndex){
     return newRows;
 }
 
-    //console.log(reDealCardRows(dealCardRows(), 0));
+//console.log(reDealCardRows(dealCardRows(), 0));
 
-    function doTheTrick(){
-        let cardRows = dealCardRows();
-        for(let i = 0; i < 2; i++){
-            renderCardRows(cardRows);
-            const selectedRowIndex = promptForRowIndex();
-            cardRows = reDealCardRows(cardRows, selectedRowIndex);
+function doTheTrick(){
+    let cardRows = dealCardRows();
+    for(let i = 0; i < 2; i++){
+        renderCardRows(cardRows);
+        const selectedRowIndex = promptForRowIndex();
+        cardRows = reDealCardRows(cardRows, selectedRowIndex);
         }
         
 
-        let selectedRow;
-        while(selectedRow !== 1){
-            renderCardRows(cardRows);
-            selectedRow = promptForRowIndex();
-            cardRows = reDealCardRows(cardRows, selectedRow);
-        }
+    let selectedRow;
+    while(selectedRow !== 1){
+        renderCardRows(cardRows);
+        selectedRow = promptForRowIndex();
+        cardRows = reDealCardRows(cardRows, selectedRow);
+    }
     
 
     const userCard = cardRows[1][3];
