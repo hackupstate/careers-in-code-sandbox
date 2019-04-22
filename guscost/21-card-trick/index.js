@@ -16,7 +16,7 @@ const SUIT_SYMBOLS = {
 
 // Get three rows of seven cards each
 // We could loop three times instead, but it's almost not worth it
-function dealCardRows() {
+function initializeCardRows() {
 
   // Create a brand-new deck of cards, scoped to this function
   const deck = new decks.StandardDeck();
@@ -41,6 +41,27 @@ function cardToSymbol(card) {
   return card.rank.shortName + SUIT_SYMBOLS[card.suit.name];
 }
 
+// Shuffle function we copied from Stack Overflow
+// https://stackoverflow.com/a/2450976
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 // Given our three rows of cards as an argument,
 // draw them in the console as symbols
 function renderCardRows(cardRows) {
@@ -51,7 +72,9 @@ function renderCardRows(cardRows) {
 
     // This transforms each card object in the array into a string
     // e.g. cardRow[0] might turn into '7♣'
-    const cardSymbols = cardRow.map(cardToSymbol);
+    // Also run our copied "shuffle" function to shuffle *only* the symbols!
+    // This lets the computer keep track of the order of cards internally
+    const cardSymbols = shuffle(cardRow.map(cardToSymbol));
 
     // Join all of the card symbols together (with tabs in between)
     const cardRowString = cardSymbols.join('\t');
@@ -87,14 +110,75 @@ function promptForRowIndex() {
   return rowNumber - 1;
 }
 
+// Place the selected row between the other two rows and re-deal
 function reDealCardRows(cardRows, selectedRowIndex) {
-  const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
 
+  // // DEPRECATED: Don't mutate the function arguments
+  // // Splice out just the selected row (this *mutates* cardRows!)
+  // // Mutating arguments is generally bad (it's a kind of side-effect!),
+  // // but we'll allow it here
+  // const selectedRow = cardRows.splice(selectedRowIndex, 1)[0];
+
+  // IMPROVED: Splice out the selected index from a new array of *just* indices
+  // We already have the selected index, so ignore what the splice returns
+  // If we do not mutate cardRows, reDealCardRows has no side-effects!
+  // There is also a "functional" way to do this with .filter (similar to .map)
+  const remainingRowIndices = [0, 1, 2];
+  remainingRowIndices.splice(selectedRowIndex, 1);
+
+  // Move the selected row "in between" the other two rows
+  // Also flatten all three rows into one pile with the ... ("spread") operator
+  // (remainingRowIndices has two items, since we removed the selected index!)
   const pileOfCards = [
-    ...cardRows[0],
-    ...selectedRow,
-    ...cardRows[1]
+    ...cardRows[remainingRowIndices[0]],
+    ...cardRows[selectedRowIndex],
+    ...cardRows[remainingRowIndices[1]]
   ];
 
-  
+  // "Deal" this pile into three new rows
+  const newRows = [[], [], []];
+  for (let i = 0; i < 21; i++) {
+    // We find the correct row with the "modulo" operator
+    // Here this is exactly like finding the *remainder* of i / 3
+    // But modulo isn't always the same as remainder (try negative numbers!)
+    newRows[i % 3].push(pileOfCards[i]);
+  }
+
+  // Return the three new rows in our new array-of-arrays
+  return newRows;
 }
+
+// Do the 21-card trick all the way through
+function doTheTrick() {
+
+  // Initialize our three rows of random cards
+  let cardRows = initializeCardRows();
+  console.log('Pick a card, and remember it.');
+
+  // Always loop at least twice: render, prompt, and re-deal
+  for(let i = 0; i < 2; i++) {
+    renderCardRows(cardRows);
+    // This is block-scoped to only one loop, so we can use const!
+    const selectedRowIndex = promptForRowIndex();
+    cardRows = reDealCardRows(cardRows, selectedRowIndex);
+  }
+
+  // We update the selected row *after* rendering, but we need to check it
+  // *before* rendering, so initialize it (as mutable!) outside the loop
+  let selectedRow;
+
+  // As long as the user hasn't chosen "Row 2" (index 1!) we need to keep
+  // looping exactly like before, but we're done as soon as they select "Row 2"
+  while (selectedRow !== 1) {
+    renderCardRows(cardRows);
+    selectedRow = promptForRowIndex();
+    cardRows = reDealCardRows(cardRows, selectedRow);
+  }
+
+  // The user's card is the middle card (index 3) of the middle row (index 1)
+  const userCard = cardRows[1][3];
+  console.log(`Your card is: ${cardToSymbol(userCard)}`);
+}
+
+// Do the trick!
+doTheTrick();
