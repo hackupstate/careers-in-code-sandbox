@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function handleSubmit(){
+      var email = document.querySelector('#email').value;
+      if (email) alert('Subscribed with ' + email);
+    }
+  </script>
+  <div style="padding-top:30px;">
+    <div style="display:flex;justify-content:center;">
+      <img src="tinyfef_lg.png" />
+    </div>
+    <div style="text-align:center;margin-bottom:40px;">
+      <h2>A tiny front-end framework for displaying user interfaces.</h2>
+      <a 
+        style="width:100px;height:40px;background-color:ghostwhite;border:2px solid steelblue;font-size:14px;padding:10px;text-decoration:none;color:steelblue;"
+        href="https://github.com/hackupstate/careers-in-code-sandbox"
+        target="_blank"
+      >
+        Get started!
+      </a>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:40px;background-color:ghostwhite;margin-bottom:20px;">
+      <div style="max-width:300px;min-width:100px;margin:0px 10px;">
+        <h3>Simple</h3>
+        <p style="text-align:justify;">
+          We like to keep everything we do simple, including our front-end solutions.
+          You can take comfort in knowing that by using tinyFEF, you're not complicating the rest of your code base.
+        </p>
+      </div>
+      <div style="max-width:300px;min-width:100px;margin:0px 10px;">
+        <h3>Declarative</h3>
+        <p style="text-align:justify;">
+          Tell tinyFEF what you want to display, and it'll make it happen. 
+          There's no need to directly manipulate the DOM step-by-step when we can take care of that for you.
+        </p>
+      </div>
+      <div style="max-width:300px;min-width:100px;margin:0px 10px;">
+        <h3>Tiny</h3>
+        <p style="text-align:justify;">
+          It's in our name! No need to worry about code bloat, we've kept everything to the minimum.
+          You can be confident that your users won't have to wait forever for your content to download.
+        </p>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <form onsubmit="handleSubmit(); return false;">
+        <input id="email" style="margin-right:5px;" />
+        <input type="submit" value="Subscribe" />
+      </form>
+    </div>
+  </div>
+</body>
+</html>
