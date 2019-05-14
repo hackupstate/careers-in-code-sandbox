@@ -1,4 +1,4 @@
-// Day 3 Homework
+// Day 3 Homework - Lesson 7
 
 const people = [
     { name: 'Wes', year: 1988 },
@@ -59,3 +59,101 @@ const newComments = [
 ];
 
 console.table(newComments);
+
+// Day 2 Homework - Lesson 14
+
+// Start with strings, numbers and booleans
+
+// let age = 100;
+// let age2 = age;
+// console.log(age, age2);
+// age = 200;
+// console.log(age, age2);
+
+// let name = 'Wes';
+// let name2 = name;
+// console.log(name, name2);
+// name = 'Wesley';
+// console.log(name, name2);
+
+// Let's say we have an array -
+const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+// and we want to make a copy of it.
+
+const team = players;
+
+console.log(players, team);
+// You might think we can do soemthing like this:
+
+team[3] = 'Lux';
+console.log(team);
+console.log(players);
+
+// However what happens when we update that array?
+
+
+// Now here is the problem!
+
+// Oh no -  we have edited the original array too!
+
+// Why? It's because that is ana rray reference, not an array copy. They both point to the same array!
+
+
+// So, how do we fix this? We take a copy instead!
+const team2 = players.slice();
+
+
+console.log(players.slice(2, 3));
+
+// One day
+
+// Or create a new array and concat the old one in
+const team3 = [].concat(players);
+
+// Or use the new ES6 spread
+const team4 = [...players];
+team4[3] = 'heee hawww';
+console.log(team4);
+
+const team5 = Array.from(players);
+
+// Now when we update it, the original one isn't changed
+
+
+// The same thing goes for objects, let's say we have a person object
+// With objects
+const person = {
+    name: 'Wes Bos',
+    age: 80
+};
+
+// And think we make a copy
+// const captain = person;
+// captain.number = 99;
+
+
+// how do we take a copy instead?
+const cap2 = Object.assign({}, person, { number: 99, age: 12 });
+console.log(cap2);
+console.log(person);
+
+// We will hopefully soon see the object ...spread
+const cap3 = {...person};
+
+
+const wes = {
+    name: 'Wes',
+    age: 100,
+    social: {
+        twitter: '@wesbos',
+        facebook: 'wesbos.developers'
+    }
+}
+
+console.clear();
+console.log(wes);
+
+const dev = Object.assign({}, wes);
+dev.name = 'wesley';
+console.log(dev);
