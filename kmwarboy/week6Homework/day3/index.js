@@ -60,7 +60,7 @@ const newComments = [
 
 console.table(newComments);
 
-// Day 2 Homework - Lesson 14
+// Day 3 Homework - Lesson 14
 
 // Start with strings, numbers and booleans
 
