@@ -100,7 +100,38 @@ function reDealCardRows(cardRows, selectedRowIndex) {
     ...cardRows[1]
   ];
 
-  // console.log(pileOfCards);
+  const newRows = [[], [], []];
+  for (let i = 0; i < 21; i++) {
+    newRows[i % 3].push(pileOfCards[i]); 
+  }
+  return newRows;
 }
 
+console.log(reDealCardRows(dealCardRows(), 0));
+
 // reDealCardRows(dealCardRows(), 0);
+
+function doTheTrick() {
+
+  let cardRows = dealCardRows();
+
+  for(let i = 0; i < 2; i++) {
+    renderCardRows(cardRows);
+    const selectedRowIndex = promptForRowIndex();
+    cardRows = reDealCardRows(cardRows, selectedRowIndex);
+  }
+
+  renderCardRows(cardRows);
+
+  let selectedRow;
+  while (selectedRow !== 1) {
+    selectedRow = promptForRowIndex();
+    cardRows = reDealCardRows(cardRows, selectedRow);
+    renderCardRows(cardRows);
+  }
+
+  const userCard = cardRows[1][3];
+  console.log(`Your card is: ${cardToSymbol(userCard)}`);
+}
+
+doTheTrick();
