@@ -93,13 +93,13 @@ const freezingTemps = ([cel, fah]) => ({celsius: cel, fahrenheit: fah});
   only one line of code.
 */
 
- /* let sum = (...intArgs) => {
+ let sum = (...intArgs) => {
     return intArgs.reduce((previous, current) => {
         return previous + current;
     })
-}; */
+}; 
 
-let sum = (...intArgs) => intArgs.reduce((previous, current) => previous + current);
+let sum = (...intArgs) => intArgs.reduce(previous, current);
 
 
 
@@ -109,9 +109,7 @@ let sum = (...intArgs) => intArgs.reduce((previous, current) => previous + curre
   the argument passed in. Use a template literal to achieve this.
 */
 
-let swear = (ARG) => {
-    console.log(`${ARG} is a word, I swear!`);
-};
+
 
 /* 
   ===--- TESTS ---===
@@ -134,6 +132,6 @@ let swear = (ARG) => {
  //console.log(freezingTemps([0, 32])); // { celsius: 0, fahrenheit: 32 }
  //console.log(freezingTemps2([0, 32])); // { celsius: 0, fahrenheit: 32 }
 
- //console.log(sum(1,2,3,4,5)); // 15
+ console.log(sum(1,2,3,4,5)); // 15
 
- swear('JavaScript'); // /* JavaScript is a word, I swear!
+ //swear('JavaScript'); // /* JavaScript is a word, I swear!
