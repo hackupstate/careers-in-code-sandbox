@@ -41,7 +41,7 @@ fetch (url, {
 	body: JSON.stringify(data),
 	headers: {
 		'Content-Type': 'application/json',
-		'Authorization': 'token 0569a1003c303d701c6f098146d79ad95adaa963'
+		'Authorization': 'token <Redacted>'
     }
 }).then(res => res.json())
 .then(response => console.log('Success:', response))
@@ -58,7 +58,7 @@ fetch (url, {
 	method: 'PATCH',
 	body: JSON.stringify(data),
 	headers: {
-		'Authorization': 'token 0569a1003c303d701c6f098146d79ad95adaa963',
+		'Authorization': 'token <redacted>',
 		'Content-Type': 'application/json',
 		'Accept': 'application/json'
 		}
@@ -75,7 +75,7 @@ var url = 'https://api.github.com/repos/kelldeveloped/new-github-api-test';
 fetch (url, {
 		method: 'DELETE',
 		headers: {
-				'Authorization': 'token 0569a1003c303d701c6f098146d79ad95adaa963',
+				'Authorization': 'token <redacted>',
 				'Content-Type': 'application/json'
         		}
 }).then(res => res.json())
@@ -169,9 +169,9 @@ Success: {name: "REST Exercises", completed: true, id: "9f89a4ea-8e85-4853-b456-
 // Notes
 /* curl -X POST -d 
 '{"name": "github-api-test", "description": "Testing out the API for our lesson on REST", "homepage": "https://github.com", "private": false, } 
-https://api.github.com/users/kelldeveloped/repos?access_token=631790a3040e10c645766231dc592c169fa688d6 -v
+https://api.github.com/users/kelldeveloped/repos?access_token=<redacted> -v
 
-curl -i -H "Authorization: token 631790a3040e10c645766231dc592c169fa688d6" \ // da headers
+curl -i -H "Authorization: token <redacted>" \ // da headers
     -d '{ // da json data
         "name": "github-api-test", 
         "private": false, 
