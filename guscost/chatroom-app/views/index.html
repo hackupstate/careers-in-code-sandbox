@@ -1,0 +1,162 @@
+<html>
+<head>
+    <title>Chatroom App</title>
+<!--   Import bootstrap -->
+    <link 
+          rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+          crossorigin="anonymous">
+</head>
+
+<body>
+<!--  Create a container with bootstrap default styling  -->
+    <div class="container" style="padding-top: 20px">
+        
+<!--       Make a container to put all of our messages in after our API call happens -->
+        <div id="messageList"></div>
+
+<!--       Create our form with ID's so we can access the fields later with jQuery. 
+Use class names like "form-control" or "btn" to include boostrap styling. -->
+        <form>
+            <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" class="form-control" id="name"/>
+            </div>
+            <div class="form-group">
+                <label>Message:</label>
+                <textarea class="form-control" id="message"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" id="sendButton">Send</button>
+        </form>
+        <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
+    </div>
+</body>
+<!-- Import jQuery ($) and moment (date formatting library) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script>
+//   Get the send button using jQuery and when you click on it
+    $("#sendButton").click((evt)=>{
+      //prevent the browser from refreshing the page on a form submit
+        evt.preventDefault();
+
+      //copy the values from the text fields to a JS variable
+        const name = $("#name").val();
+        const message = $("#message").val();
+        
+      //make an API call to our "send" endpoint
+        fetch("https://plausible-scallion.glitch.me/send",
+        {
+            method: "PUT", 
+            body: JSON.stringify({name: name, message: message}), //convert our data from a JS object to JSON text
+            headers: {
+                'Content-Type': 'application/json', //tell the server we're sending it JSON so it knows to parse it out
+            }
+        }
+        ).then(function(response) {
+             return response.json(); //get the response from our server and parse it out from JSON to a JS object
+        })
+        .then(function(myJson) {
+            $("#message").val("");
+            $("#name").val("");
+            console.log(myJson); //log it out so we know the call worked
+        });
+    });
+    
+        fetch("https://plausible-scallion.glitch.me/receive",
+        {
+            method: "GET" //get out recieve endpoint
+        }
+        ).then(function(response) {
+             return response.json(); //parse out the JSON
+        })
+        .then(function(myJson) {
+            let contentToUpdate = ""; //create a variable outside the loop of the content to update
+            for (const message of myJson.messages){ //loop over each message we got back from the server
+                contentToUpdate += `
+                 <div class="card" style="margin-top: 15px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5>${message.name}:</h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span>${moment(message.timestamp).format("LT")}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p>${message.message}</p>
+                        </div>
+                    </div>
+                </div>
+                `; //add this template literal to the html which we want to set
+              //${VARNAME} will add the value of the variable into the template
+              //moment() code is formatting our crazy formatted timestamp to something more readable
+              //we're using bootstrap classes in here to make our code prettier without having to write any CSS on our own
+            }
+            
+          //use jQuery to set the messages HTML we just built into our div above
+          $("#messageList").html(contentToUpdate);
+        });
+  
+  
+  $("#saveButton").click((evt)=>{
+    evt.preventDefault();
+    
+    fetch("https://plausible-scallion.glitch.me/save",
+        {
+            method: "GET" //get out recieve endpoint
+        }
+        ).then(function(response) {
+             return response.json(); //parse out the JSON
+        })
+        .then(function(myJson) {console.log(myJson)});
+  })
+  
+//   $(() => {
+//     const socket = io();
+    
+//     socket.on('send message', (msgs) => {
+//       let contentToUpdate = ""; //create a variable outside the loop of the content to update
+//       for (const message of msgs){ //loop over each message we got back from the server
+//           contentToUpdate += `
+//            <div class="card" style="margin-top: 15px;">
+//               <div class="card-body">
+//                   <div class="row">
+//                       <div class="col">
+//                           <h5>${message.name}:</h5>
+//                       </div>
+//                       <div class="col-2 text-right">
+//                           <span>${moment(message.timestamp).format("LT")}</span>
+//                       </div>
+//                   </div>
+//                   <div>
+//                       <p>${message.message}</p>
+//                   </div>
+//               </div>
+//           </div>
+//           `; //add this template literal to the html which we want to set
+//         //${VARNAME} will add the value of the variable into the template
+//         //moment() code is formatting our crazy formatted timestamp to something more readable
+//         //we're using bootstrap classes in here to make our code prettier without having to write any CSS on our own
+//       }
+            
+//           //use jQuery to set the messages HTML we just built into our div above
+//       $("#messageList").html(contentToUpdate);
+//     });
+    
+//     $('#sendButton').click((evt) => {
+//       evt.preventDefault();
+//       socket.emit("new message", {
+//         name: $("#name").val(),
+//         message: $("#message").val()
+//       })
+    
+//        $("#name").val("")
+//        $("#message").val("")
+//     })
+  // });
+</script>
+</html>
