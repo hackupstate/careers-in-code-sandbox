@@ -6,6 +6,11 @@ npm init      || creates our package.json file so we can save our dependencies
 npm install --save express body-parser moment      || Install three packages and save them to package.json
 */
 
+//docker command to start the container docker run -d --rm --name postgresDatabase
+// -e POSTGRES_PASSWORD=cic -p 5432:5432 
+//-v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+
+
 const express = require("express"); //import express from npm
 
 // Create an app of express (note, this is a requirement of node. Only a few other packages require you 
@@ -27,7 +32,7 @@ let messages = [];
 app.get("/", (req, res) => {
   // __dirname is important to use here as it helps node figure out that the path is relative to the currently
   // running server.js file
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 // PUT endpoint to send a message
