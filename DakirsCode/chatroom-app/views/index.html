@@ -47,7 +47,7 @@ Use class names like "form-control" or "btn" to include boostrap styling. -->
         const message = $("#message").val();
         
       //make an API call to our "send" endpoint
-        fetch("https://plausible-scallion.glitch.me/send",
+        fetch("https://localhost:8081/send",
         {
             method: "PUT", 
             body: JSON.stringify({name: name, message: message}), //convert our data from a JS object to JSON text
@@ -65,7 +65,7 @@ Use class names like "form-control" or "btn" to include boostrap styling. -->
         });
     });
     
-        fetch("https://plausible-scallion.glitch.me/receive",
+        fetch("https://localhost:8081/receive",
         {
             method: "GET" //get out recieve endpoint
         }
@@ -105,7 +105,7 @@ Use class names like "form-control" or "btn" to include boostrap styling. -->
   $("#saveButton").click((evt)=>{
     evt.preventDefault();
     
-    fetch("https://plausible-scallion.glitch.me/save",
+    fetch("https://localhost:8081/save",
         {
             method: "GET" //get out recieve endpoint
         }
