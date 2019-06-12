@@ -1,24 +1,45 @@
 /*
 We have to install our dependencies in npm in our terminal
 Some example commands are:
-sudo npm install -g nodemon    || We need sudo to install global packages as they're installed everywhere on our computer, not just this project.
-npm init      || creates our package.json file so we can save our dependencies
-npm install --save express body-parser moment      || Install three packages and save them to package.json
+sudo npm install -g nodemon     || We need sudo to install global packages as they're installed everywhere on our computer, not just for this project.
+npm init                        || Create a new package.json file so we can save our dependencies (follow the prompts)
+npm install --save express      || Install the "express" package and save it to package.json
+npm install                     || Install all packages listed as "dependencies" in the package.json
 */
 
-const express = require("express"); //import express from npm
+const express = require("express"); // express, the package for building our server
+const cors = require("cors"); // CORS headers middleware for express
+const bodyparser = require("body-parser"); // body-parser middleware for express
 
-// Create an app of express (note, this is a requirement of node. Only a few other packages require you 
-// initialize it before you use it. Read the docs of that package for more info)
-const app = express(); 
-
-// import body-parser & moment from npm as well
-const bodyparser = require("body-parser");
+// import some other NPM packages
 const moment = require("moment");
 const fs = require("fs");
 
-// tell express to use bodyparser as middleware so we can get access to req.body
-app.use(bodyparser.json());
+// Import "Sequelize" which is a package for using the database!
+const Sequelize = require("sequelize")
+
+
+// Set up sequelize to connect to our postgres database
+const sequelize = new Sequelize("postgres", "postgres", "cic", {
+  host: "localhost",
+  dialect: "postgres",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
+
+// Try out a database query!
+sequelize.query("SELECT * FROM messages").then(function([results, metadata]) {
+  console.log(results);
+});
+
+
+// Create a new Express app
+const app = express(); 
+app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
+app.use(bodyparser.json()); // add bodyparser middleware so we can get access to req.body
 
 // make a variable for us to store our messages in
 let messages = [];
