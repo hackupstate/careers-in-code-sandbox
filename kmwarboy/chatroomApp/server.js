@@ -27,7 +27,7 @@ let messages = [];
 app.get("/", (req, res) => {
   // __dirname is important to use here as it helps node figure out that the path is relative to the currently
   // running server.js file
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 // PUT endpoint to send a message

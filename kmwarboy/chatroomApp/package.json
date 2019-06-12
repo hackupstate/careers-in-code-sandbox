@@ -1,7 +1,6 @@
 {
   "name": "chatroomapp",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -15,5 +14,6 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }
