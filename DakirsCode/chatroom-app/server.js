@@ -13,6 +13,8 @@ npm install --save express body-parser moment      || Install three packages and
 
 
 const express = require("express"); //import express from npm
+const cors = require('cors');
+
 
 // Create an app of express (note, this is a requirement of node. Only a few other packages require you 
 // initialize it before you use it. Read the docs of that package for more info)
@@ -23,8 +25,11 @@ const bodyparser = require("body-parser");
 const moment = require("moment");
 const fs = require("fs");
 
+//const SQL = require('sequelize');
+
 // tell express to use bodyparser as middleware so we can get access to req.body
 app.use(bodyparser.json());
+app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
 
 // make a variable for us to store our messages in
 let messages = [];
@@ -33,6 +38,7 @@ let messages = [];
 app.get("/", (req, res) => {
   // __dirname is important to use here as it helps node figure out that the path is relative to the currently
   // running server.js file
+  console.log("dakirs server is up");
   res.sendFile(__dirname + "/views/index.html");
 });
 
