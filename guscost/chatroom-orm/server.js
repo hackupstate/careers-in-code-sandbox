@@ -23,3 +23,22 @@ const User = db.define('user', {
   state: Sequelize.STRING,
   birthday: Sequelize.DATEONLY
 });
+
+const Message = db.define('message', {
+  text: { type: Sequelize.STRING, allowNull: false },
+  timestamp: {
+    type: Sequelize.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.NOW // NOW()
+  },
+  user_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    references: {
+      model: User,
+      key: 'id'
+    }
+  }
+});
+
+
