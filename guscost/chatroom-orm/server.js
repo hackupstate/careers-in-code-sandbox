@@ -41,4 +41,23 @@ const Message = db.define('message', {
   }
 });
 
+// If "force" is "true", this will tear down & 
+// recreate all tables (including the data!)
+db.sync({ force: true });
 
+// Create a new Express app
+const app = express(); 
+app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
+app.use(bodyparser.json()); // add bodyparser middleware so we can get access to req.body
+
+app.get('/receive', (req, res) => {
+  Message.findAll().then(messages => res.send(messages));
+});
+
+
+// tell our express app to listen on port 8081 on requests from any IP address (0.0.0.0)
+app.listen(8081, "0.0.0.0", () => {
+  // use a callback to make sure our server started up correctly, this won't print if we run into
+  // issues with the port already being used
+  console.log("Server is running");
+});
