@@ -47,7 +47,7 @@ Use class names like "form-control" or "btn" to include boostrap styling. -->
         const message = $("#message").val();
         
       //make an API call to our "send" endpoint
-        fetch("https://localhost:8081/send",
+        fetch("http://localhost:8081/send",
         {
             method: "PUT", 
             body: JSON.stringify({name: name, message: message}), //convert our data from a JS object to JSON text
@@ -64,8 +64,8 @@ Use class names like "form-control" or "btn" to include boostrap styling. -->
             console.log(myJson); //log it out so we know the call worked
         });
     });
-    
-        fetch("https://localhost:8081/receive",
+        setInterval(() =>{ 
+        fetch("http://localhost:8081/receive",
         {
             method: "GET" //get out recieve endpoint
         }
@@ -100,12 +100,12 @@ Use class names like "form-control" or "btn" to include boostrap styling. -->
           //use jQuery to set the messages HTML we just built into our div above
           $("#messageList").html(contentToUpdate);
         });
-  
+    },1000);
   
   $("#saveButton").click((evt)=>{
     evt.preventDefault();
     
-    fetch("https://localhost:8081/save",
+    fetch("http://localhost:8081/save",
         {
             method: "GET" //get out recieve endpoint
         }

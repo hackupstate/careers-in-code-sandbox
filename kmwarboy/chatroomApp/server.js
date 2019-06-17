@@ -1,27 +1,39 @@
 /*
 We have to install our dependencies in npm in our terminal
 Some example commands are:
-sudo npm install -g nodemon    || We need sudo to install global packages as they're installed everywhere on our computer, not just this project.
-npm init      || creates our package.json file so we can save our dependencies
-npm install --save express body-parser moment      || Install three packages and save them to package.json
+sudo npm install -g nodemon     || We need sudo to install global packages as they're installed everywhere on our computer, not just for this project.
+npm init                        || Create a new package.json file so we can save our dependencies (follow the prompts)
+npm install --save express      || Install the "express" package and save it to package.json
+npm install                     || Install all packages listed as "dependencies" in the package.json
 */
 
-const express = require("express"); //import express from npm
+const express = require("express"); // express, the package for building our server
+const cors = require("cors"); // CORS headers middleware for express
+const bodyparser = require("body-parser"); // body-parser middleware for express
 
-// Create an app of express (note, this is a requirement of node. Only a few other packages require you 
-// initialize it before you use it. Read the docs of that package for more info)
-const app = express(); 
-
-// import body-parser & moment from npm as well
-const bodyparser = require("body-parser");
+// import some other NPM packages
 const moment = require("moment");
 const fs = require("fs");
 
-// tell express to use bodyparser as middleware so we can get access to req.body
-app.use(bodyparser.json());
+// Import "Sequelize" which is a package for using the database!
+const SQL = require("sequelize");
 
-// make a variable for us to store our messages in
-let messages = [];
+
+// Set up sequelize to connect to our postgres database
+const sequelize = new SQL("postgres", "postgres", "cic", {
+  host: "localhost",
+  dialect: "postgres",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
+
+// Create a new Express app
+const app = express(); 
+app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
+app.use(bodyparser.json()); // add bodyparser middleware so we can get access to req.body
 
 // tell express to send the index.html file when you load the homepage root route ("/")
 app.get("/", (req, res) => {
@@ -32,34 +44,33 @@ app.get("/", (req, res) => {
 
 // PUT endpoint to send a message
 app.put("/send", (req, res) => {
-  // grab the data from our incoming req(uest) and store it in our messages array as an object
-  messages.push({
-    name: req.body.name,
-    message: req.body.message,
-    timestamp: new Date() //built in JS to create a new date timestamp
+  const newId = Math.floor(Math.random() * 999999999) + 1;
+  sequelize.query(
+    "INSERT INTO messages VALUES (:id, :text, NOW(), :user_id);",
+    {
+      replacements: {
+        id: newId,
+        text: req.body.message,
+        user_id: req.body.user_id
+      }
+    }
+  ).then(function([results, metadata]) {
+    console.log(results, metadata);
+
+    // always send something back to the client as it will always be waiting to hear back from the server
+    res.send({ status: "ok" });
+  }).catch(function (error) {
+    console.log(error);
+    res.send({ status: "error" });
   });
-
-  // add in a console.log here to make sure the server is receiving & generating the right data
-  console.log(messages);
-
-  // always send something back to the client as it will always be waiting to hear back from the server
-  res.send({ status: "ok" });
 });
 
 // GET endpoint to get all of our messages
 app.get("/receive", (req, res) => {
-  // send the messages array back as JSON (express handles this for us) in a key called messages
-  res.send({ messages: messages });
-});
-
-app.get("/save", (req, res)=>{
-  let toSave = "";
-  for (const message of messages){
-    toSave += `${message.name} (${moment(message.timestamp).format("LT")}): ${message.message}\n`;
-  }
-  fs.writeFileSync(__dirname + "/message.txt", toSave);
-
-  res.send({message: "ok"});
+  // send the messages from SQL back as JSON (express handles this for us) in a key called messages
+  sequelize.query("SELECT * FROM messages;").then(function([results, metadata]) {
+    res.send({messages: results});
+  });
 });
 
 // tell our express app to listen on port 8081 on requests from any IP address (0.0.0.0)
