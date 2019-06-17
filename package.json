@@ -1,0 +1,27 @@
+{
+  "name": "cicsandbox",
+  "version": "1.0.0",
+  "description": "A sandbox for students to manage their code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackupstate/careers-in-code-sandbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hackupstate/careers-in-code-sandbox/issues"
+  },
+  "homepage": "https://github.com/hackupstate/careers-in-code-sandbox#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.24.0",
+    "sequelize": "^5.8.10"
+  }
+}

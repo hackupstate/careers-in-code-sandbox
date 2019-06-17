@@ -18,7 +18,6 @@ const fs = require("fs");
 // Import "Sequelize" which is a package for using the database!
 const SQL = require("sequelize");
 
-
 // Set up sequelize to connect to our postgres database
 const sequelize = new SQL("postgres", "postgres", "cic", {
   host: "localhost",
@@ -66,9 +65,16 @@ app.put("/send", (req, res) => {
 });
 
 // GET endpoint to get all of our messages
-app.get("/receive", (req, res) => {
+app.get("/receive/:room_id", (req, res) => {
   // send the messages from SQL back as JSON (express handles this for us) in a key called messages
-  sequelize.query("SELECT * FROM messages;").then(function([results, metadata]) {
+  sequelize.query(
+    "SELECT * FROM messages WHERE room_id = :room_id;",
+    {
+      replacements: {
+        room_id: req.params.room_id
+      }
+    }
+  ).then(function([results, metadata]) {
     res.send({messages: results});
   });
 });

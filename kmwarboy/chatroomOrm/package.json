@@ -1,7 +1,14 @@
 {
-  "name": "chatroomapp",
+  "name": "chatroomorm",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -10,13 +17,5 @@
     "moment": "^2.24.0",
     "pg": "^7.11.0",
     "sequelize": "^5.8.10"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }
