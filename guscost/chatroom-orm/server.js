@@ -18,8 +18,8 @@ const db = new Sequelize('postgres', 'postgres', 'cic', {
 });
 
 const User = db.define('user', {
-  name: Sequelize.STRING,
   email: { type: Sequelize.STRING, unique: true, allowNull: false },
+  name: Sequelize.STRING,
   state: Sequelize.STRING,
   birthday: Sequelize.DATEONLY
 });
@@ -50,25 +50,40 @@ const app = express();
 app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
 app.use(bodyparser.json()); // add bodyparser middleware so we can get access to req.body
 
+
 // GET a list of users
-app.get('/users', (req, res) => {
-  User.findAll().then(users => res.send(users));
+app.get('/users', async function(req, res) {
+  const users = await User.findAll();
+  res.send(users);
 });
 
 // POST a new user
-app.post('/users', (req, res) => {
-  User.create({
-    email: req.body.email
-  }).then(user => {
+app.post('/users', async (req, res) => {
+  try {
+    const user = await User.create(req.body);
     res.send({ status: 'ok', user: user });
-  }).catch(error => {
+  } catch (error) {
     res.send({ status: 'error', error: error });
-  });
+  }
 });
 
 // GET a list of messages
-app.get('/messages', (req, res) => {
-  Message.findAll().then(messages => res.send(messages));
+app.get('/messages', async (req, res) => {
+  const messages = await Message.findAll();
+  res.send(messages);
+});
+
+// POST a new message
+app.post('/messages', async (req, res) => {
+  try {
+    const message = await Message.create({
+      user_id: req.body.user_id,
+      text: req.body.text
+    });
+    res.send({ status: 'ok', message: message });
+  } catch (error) {
+    res.send({ status: 'error', error: error });
+  }
 });
 
 
