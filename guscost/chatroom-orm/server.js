@@ -43,14 +43,31 @@ const Message = db.define('message', {
 
 // If "force" is "true", this will tear down & 
 // recreate all tables (including the data!)
-db.sync({ force: true });
+db.sync({ force: false });
 
 // Create a new Express app
 const app = express(); 
 app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
 app.use(bodyparser.json()); // add bodyparser middleware so we can get access to req.body
 
-app.get('/receive', (req, res) => {
+// GET a list of users
+app.get('/users', (req, res) => {
+  User.findAll().then(users => res.send(users));
+});
+
+// POST a new user
+app.post('/users', (req, res) => {
+  User.create({
+    email: req.body.email
+  }).then(user => {
+    res.send({ status: 'ok', user: user });
+  }).catch(error => {
+    res.send({ status: 'error', error: error });
+  });
+});
+
+// GET a list of messages
+app.get('/messages', (req, res) => {
   Message.findAll().then(messages => res.send(messages));
 });
 
