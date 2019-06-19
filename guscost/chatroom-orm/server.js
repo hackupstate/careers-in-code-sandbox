@@ -5,16 +5,23 @@ const bodyparser = require('body-parser');
 const moment = require('moment');
 const fs = require('fs');
 
+const dbConfig = require('./config/config.json');
+
 const Sequelize = require('sequelize');
-const db = new Sequelize('postgres', 'postgres', 'cic', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
+const db = new Sequelize(
+  dbConfig.development.database,
+  dbConfig.development.username,
+  dbConfig.development.password,
+  {
+    host: dbConfig.development.host,
+    dialect: dbConfig.development.dialect,
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    }
   }
-});
+);
 
 const User = require('./models/user')(db, Sequelize.DataTypes);
 const Message = require('./models/message')(db, Sequelize.DataTypes);
