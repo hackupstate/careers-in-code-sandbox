@@ -1,19 +1,22 @@
 'use strict';
+
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       unique: true,
       allowNull: false,
       validate: { isEmail: true }
     },
-    name: Sequelize.STRING,
+    name: DataTypes.STRING,
     state: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       validate: { is: /^[A-Z]{2}$/i }
     },
     birthday: {
-      type: Sequelize.DATEONLY,
+      type: DataTypes.DATEONLY,
       validate: {
         isOldEnough: function(value) {
           if (moment(value).add(18, 'years') > moment()) {
@@ -28,8 +31,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {});
-  User.associate = function(models) {
-    // associations can be defined here
-  };
   return User;
 };
