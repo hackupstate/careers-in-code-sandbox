@@ -1,7 +1,6 @@
 {
   "name": "chatroomorm",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +16,7 @@
     "moment": "^2.24.0",
     "pg": "^7.11.0",
     "sequelize": "^5.8.10"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

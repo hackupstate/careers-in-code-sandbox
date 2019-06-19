@@ -20,14 +20,29 @@ const db = new Sequelize("postgres", "postgres", "cic", {
   }
 });
 
+//force: true wipes tables everytime and recereates (including data) everytime you restart the server
+db.sync({ force: false });
+
 const User = db.define('user', {
     name: Sequelize.STRING,
     email: { 
         type: Sequelize.STRING,
         unique: true,
         allowNull: false,
-        state: Sequelize.STRING,
-        birthday: Sequelize.DATEONLY
+        validate: {
+            isEmail: true
+        }
+    },
+    state: {
+        type: Sequelize.STRING,
+        validate: {is: /^[A-Z]{2}$/i}
+    },
+    birthday: {
+        type: Sequelize.DATEONLY,
+        validate: {
+            isAfter: '1900-01-01',
+            isBefore: '2000-01-01'
+        }
     }
 });
 
@@ -51,29 +66,32 @@ const message = db.define('message', {
     }
 });
 
-//force: true wipes tables everytime and recereates (including data) everytime you restart the server
-db.sync({ force: false });
-
 const app = express();
 app.use(cors()); 
 app.use(bodyparser.json());
 
-app.get('/users', (req, res) => {
-    message.findAll().then(users =>res.send(users));
+// updated to be async and use await
+app.get('/users', async (req, res) => {
+    const users =  await User.findAll();
+    res.send(users);
 });
 
-app.post('/users', (req, res) => {
-    User.create({
-        text: req.body.text
-    }).then(User => {
-        res.send({
-            status: 'ok', user: user
-        }).catch(error => {
-            res.send({
-                status: 'error', error: error
-            });
-        });
+app.post('/users', async (req, res) => {
+    try {
+    const user = await User.create({
+        email: req.body.email,
+        name: req.body.name,
+        state: req.body.state,
+        birthday: req.body.birthday
     });
+    res.send({
+        status: 'ok', user: User
+    })
+    } catch (error) {
+        res.send({
+            status: 'error', error: error
+        });
+    }
 });
 
 app.get('/messages', (req, res) => {
@@ -83,14 +101,15 @@ app.get('/messages', (req, res) => {
 app.post('/messages', (req, res) => {
     message.create({
         text: req.body.text,
+        timestamp: req.body.timestamp,
         user_id: req.body.user_id
     }).then(message => {
         res.send({
             status: 'ok', message: message
-        }).catch(error => {
-            res.send({
-                status: 'error', error: error
-            });
+        })
+    }).catch(error => {
+        res.send({
+            status: 'error', error: error
         });
     });
 });
