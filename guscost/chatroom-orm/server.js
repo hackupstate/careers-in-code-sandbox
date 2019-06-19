@@ -18,11 +18,37 @@ const db = new Sequelize('postgres', 'postgres', 'cic', {
 });
 
 const User = db.define('user', {
-  email: { type: Sequelize.STRING, unique: true, allowNull: false },
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+    validate: { isEmail: true }
+  },
   name: Sequelize.STRING,
-  state: Sequelize.STRING,
-  birthday: Sequelize.DATEONLY
+  state: {
+    type: Sequelize.STRING,
+    validate: { is: /^[A-Z]{2}$/i }
+  },
+  birthday: {
+    type: Sequelize.DATEONLY,
+    validate: {
+      isOldEnough: function(value) {
+        if (moment(value).add(18, 'years') > moment()) {
+          throw new Error('Please be older before using the app');
+        }
+      },
+      isNotTooOld: function(value) {
+        if (moment(value).add(118, 'years') < moment()) {
+          throw new Error('Please be younger?');
+        }
+      }
+    }
+  }
 });
+
+User.prototype.sendMessage = function(text) {
+  return Message.create({ user_id: this.id, text: text });
+}
 
 const Message = db.define('message', {
   text: { type: Sequelize.STRING, allowNull: false },
@@ -76,10 +102,8 @@ app.get('/messages', async (req, res) => {
 // POST a new message
 app.post('/messages', async (req, res) => {
   try {
-    const message = await Message.create({
-      user_id: req.body.user_id,
-      text: req.body.text
-    });
+    const user = await User.findByPk(req.body.user_id);
+    const message = await user.sendMessage(req.body.text);
     res.send({ status: 'ok', message: message });
   } catch (error) {
     res.send({ status: 'error', error: error });
