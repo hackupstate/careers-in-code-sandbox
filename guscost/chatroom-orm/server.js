@@ -27,7 +27,7 @@ const User = require('./models/user')(db, Sequelize.DataTypes);
 const Message = require('./models/message')(db, Sequelize.DataTypes);
 
 User.prototype.sendMessage = function(text) {
-  return Message.create({ user_id: this.id, text: text });
+  return Message.create({ userId: this.id, text: text });
 }
 
 // NOTE: we are using migrations now! No need for this!
@@ -66,12 +66,12 @@ app.get('/messages', async (req, res) => {
 // POST a new message
 app.post('/messages', async (req, res) => {
   try {
-    const message = await Message.create({
-      userId: req.body.userId,
-      text: req.body.text
-    });
-    // const user = await User.findByPk(req.body.user_id);
-    // const message = await user.sendMessage(req.body.text);
+    // const message = await Message.create({
+    //   userId: req.body.userId,
+    //   text: req.body.text
+    // });
+    const user = await User.findByPk(req.body.userId);
+    const message = await user.sendMessage(req.body.text);
     res.send({ status: 'ok', message: message });
   } catch (error) {
     res.send({ status: 'error', error: error });
