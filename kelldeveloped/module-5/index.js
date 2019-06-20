@@ -44,4 +44,3 @@ console.log(doThings());
 console.log(globalVar);
 //console.log(localVar);
 
-This is Dana and I've edited your file with this sentence. Have a good night!
