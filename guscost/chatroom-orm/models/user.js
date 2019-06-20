@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
+    },
+    favoriteColor: {
+      type: DataTypes.STRING,
+      validate: { is: /^[a-z]+$/ }
     }
   }, {});
   return User;

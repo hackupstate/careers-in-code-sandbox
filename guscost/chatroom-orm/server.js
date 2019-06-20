@@ -43,8 +43,12 @@ app.use(bodyparser.json()); // add bodyparser middleware so we can get access to
 
 // GET a list of users
 app.get('/users', async function(req, res) {
-  const users = await User.findAll();
-  res.send(users);
+  try {
+    const users = await User.findAll();
+    res.send({ status: 'ok', users: users });
+  } catch (error) {
+    res.send({ status: 'error', error: error });
+  }
 });
 
 // POST a new user
@@ -59,19 +63,23 @@ app.post('/users', async (req, res) => {
 
 // GET a list of messages
 app.get('/messages', async (req, res) => {
-  const messages = await Message.findAll();
-  res.send(messages);
+  try {
+    const messages = await Message.findAll();
+    res.send({ status: 'ok', messages: messages });
+  } catch (error) {
+    res.send({ status: 'error', error: error });
+  }
 });
 
 // POST a new message
 app.post('/messages', async (req, res) => {
   try {
-    // const message = await Message.create({
-    //   userId: req.body.userId,
-    //   text: req.body.text
-    // });
-    const user = await User.findByPk(req.body.userId);
-    const message = await user.sendMessage(req.body.text);
+    const message = await Message.create({
+      userId: req.body.userId,
+      text: req.body.text
+    });
+    // const user = await User.findByPk(req.body.userId);
+    // const message = await user.sendMessage(req.body.text);
     res.send({ status: 'ok', message: message });
   } catch (error) {
     res.send({ status: 'error', error: error });
