@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source ./vars.sh
-docker stop $NAME
+docker stop $MONGO_NAME
