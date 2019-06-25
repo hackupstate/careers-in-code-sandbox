@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
   res.send({ hello: "world" });
 });
 
-//tell the server to listen on port 8080 on any API address
+//tell the server to listen on port 8080 on any IP address
 app.listen(8080, "0.0.0.0", () => {
   //add a callback so we know there were no errors turning on
   console.log("Server is running");
