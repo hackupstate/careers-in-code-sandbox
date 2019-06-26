@@ -20,33 +20,33 @@ app.use(bodyparser.json());
 // });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+	res.sendFile(__dirname + "/index.html");
 });
 
 //post endpoint for creating new task
 app.post("/task", async (req, res) => {
-  //use the sequelize model to create a todo
-  await models.Todo.create({
-    name: req.body.name, //req.body is our body from our fetch request
-    createdAt: new Date(), //system generated timestamp
-    dueTime: req.body.dueTime,
-    userName: req.body.userName
-  });
+	//use the sequelize model to create a todo
+	await models.Todo.create({
+		name: req.body.name, //req.body is our body from our fetch request
+		createdAt: new Date(), //system generated timestamp
+		dueTime: req.body.dueTime,
+		userName: req.body.userName
+	});
 
-  //every endpoint needs to send something back to the server
-  res.send({ message: "ok" });
+	//every endpoint needs to send something back to the server
+	res.send({ message: "ok" });
 });
 
 app.get("/task", async (req, res) => {
-  //go to the DB using the model, get all the tasks...
-  const tasks = await models.Todo.findAll();
+	//go to the DB using the model, get all the tasks...
+	const tasks = await models.Todo.findAll();
 
-  /////then send them back using JSON
-  res.send({ tasks }); //note, {tasks} is the equivalent of {tasks: tasks}
+	/////then send them back using JSON
+	res.send({ tasks }); //note, {tasks} is the equivalent of {tasks: tasks}
 });
 
 //tell the server to listen on port 8080 on any IP address
 app.listen(8080, "0.0.0.0", () => {
-  //add a callback so we know there were no errors turning on
-  console.log("Server is running");
+	//add a callback so we know there were no errors turning on
+	console.log("Server is running");
 });
