@@ -35,13 +35,17 @@ module.exports = () => {
       },
       name: Sequelize.STRING,
       createdAt: Sequelize.DATE,
-      completetionTime: Sequelize.DATE,
+      completionTime: Sequelize.DATE,
       dueTime: Sequelize.DATE,
-      userID: Sequelize.INTEGER.UNSIGNED //unsigned means it will be a non negative (positive) number
+      userName: Sequelize.STRING
+      // userID: Sequelize.INTEGER.UNSIGNED //unsigned means it will be a non negative (positive) number
     }),
     init: () => {
       //this code won't run until we call init in another file.
-      db.sync({ force: true }); //sync to copy our model structure to the database
+      db
+        .sync
+        // { force: true }
+        (); //sync to copy our model structure to the database
     }
   };
 };
