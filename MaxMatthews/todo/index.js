@@ -14,9 +14,30 @@ models.init();
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
 
-//get request to the home page and send back some JSON
+// //get request to the home page and send back some JSON
+// app.get("/", (req, res) => {
+//   res.send({ hello: "world" });
+// });
+
 app.get("/", (req, res) => {
-  res.send({ hello: "world" });
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/task", async (req, res) => {
+  await models.Todo.create({
+    name: req.body.name,
+    createdAt: new Date(),
+    dueTime: req.body.dueTime,
+    userName: req.body.userName
+  });
+
+  res.send({ message: "ok" });
+});
+
+app.get("/task", async (req, res) => {
+  const tasks = await models.Todo.findAll();
+
+  res.send({ tasks });
 });
 
 //tell the server to listen on port 8080 on any IP address
