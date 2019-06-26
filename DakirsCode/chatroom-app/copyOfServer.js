@@ -25,14 +25,31 @@ const bodyparser = require("body-parser");
 const moment = require("moment");
 const fs = require("fs");
 
-//const SQL = require('sequelize');
+const sequelize = require('sequelize');
+
+const SQL = new sequelize("postgres","postgres","cic",
+{
+  host:"localhost",
+  dialect:"postgres",
+  pool:
+  {
+    max:5,
+    min:0,
+    idle:10000
+  }
+});
+
+//try out database query
+SQL.query("SELECT * FROM messages").then(function([results,metadata])
+{
+console.log(results);
+});
 
 // tell express to use bodyparser as middleware so we can get access to req.body
 app.use(bodyparser.json());
 app.use(cors()); // add CORS middleware so we can connect to a remote server from our client webpage
 
 // make a variable for us to store our messages in
-let messages = [];
 
 // tell express to send the index.html file when you load the homepage root route ("/")
 app.get("/", (req, res) => {
@@ -42,6 +59,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+let messages = [];
 // PUT endpoint to send a message
 app.put("/send", (req, res) => {
   // grab the data from our incoming req(uest) and store it in our messages array as an object
@@ -78,5 +96,5 @@ app.get("/save", (req, res)=>{
 app.listen(8081, "0.0.0.0", () => {
   // use a callback to make sure our server started up correctly, this won't print if we run into
   // issues with the port already being used
-  console.log("Server is running");
+  console.log("Server is running from dakirs code base");
 });
