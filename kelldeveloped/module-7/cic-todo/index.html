@@ -16,19 +16,19 @@
         <form class="card" style="margin-top: 20px;" onsubmit="newTask(event)">
             <div class="card-body">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input class="form-control" id="name">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="task">Task</label>
                             <input class="form-control" id="task">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="dueDate">Due Date</label>
                             <input class="form-control" id="dueDate" type="text">
@@ -48,9 +48,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
-                                Task
-                            </th>
+                            <th> Task </th>
                             <th> Creator </th>
                             <th> Due Date </th>
                             <th> Completion Time </th>
@@ -81,7 +79,6 @@
 <script>
     $(() => {
         $("#dueDate").datepicker();
-
     });
     function newTask(evt) {
         evt.preventDefault();
@@ -89,7 +86,7 @@
         const task = $("#task").val();
         const dueDate = $("#dueDate").val();
 
-        fetch("http://127.0.0.1:8082/newTask", {
+        fetch("http://127.0.0.1:8080/task", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json', //tell the server we're sending it JSON so it knows to parse it out
@@ -102,25 +99,17 @@
         }).then(rawJSON => {
             return rawJSON.json();
         }).then(data => {
-
+            console.log("Fetch worked!");
         });
-
-        fetch("http://127.0.0.1:8082/task", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json', //tell the server we're sending it JSON so it knows to parse it out
-            },
-            body: JSON.stringify({
-                name: task,
-                dueTime: dueDate,
-                userName: name
-            })
-        }).then(rawJSON => {
-            return rawJSON.json();
-        }).then(data => {
-
-        })
     };
+
+    fetch("http://127.0.0.1:8080/task", {
+        method: "GET"
+    }).then(rawJSON => {
+        return rawJSON.json();
+    }).then(data => {
+        console.log(data);
+    });
 </script>
 
 </html>

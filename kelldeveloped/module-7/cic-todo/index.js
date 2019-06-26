@@ -6,7 +6,6 @@ const models = require("./models")();
 models.init();
 
 const bodyparser = require("body-parser");
-
 app.use(bodyparser.json);
 
 //app.get("/", (req, res) => {
@@ -17,7 +16,7 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "./index.html");
 });
 
-app.post("/newtask", async (req, res) => {
+app.post("/task", async (req, res) => {
     await models.Todo.create({
         name: req.body.name,
         createdAt: new Date(),
@@ -26,8 +25,13 @@ app.post("/newtask", async (req, res) => {
         userName: req.body.userName
     });
     res.send({ message: 'okay' });
-})
+});
 
-app.listen(8082, '0.0.0.0', () => {
+app.get("/task", async (req, res) => {
+    const tasks = await models.Todo.findAll();
+    res.send({ tasks });
+});
+
+app.listen(8080, '0.0.0.0', () => {
     console.log("Server is running!")
 });

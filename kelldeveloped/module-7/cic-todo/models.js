@@ -7,7 +7,7 @@ module.exports = () => {
 
     return {
         db,
-        User: db.define("user", {
+        User: db.define("User", {
             id: {
                 type: Sequelize.INTEGER.UNSIGNED,
                 autoIncrement: true,
@@ -15,7 +15,7 @@ module.exports = () => {
             },
             name: Sequelize.STRING,
         }),
-        Todo: db.define("todo", {
+        Todo: db.define("Todo", {
             id: {
                 type: Sequelize.INTEGER.UNSIGNED,
                 autoIncrement: true,
@@ -30,7 +30,9 @@ module.exports = () => {
 
         }),
         init: () => {
-            // db.sync({ force: true });
+            db.sync
+                //({ force: true })
+                ;
         }
     };
 };
