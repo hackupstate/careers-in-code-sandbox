@@ -29,7 +29,10 @@
 						<div class="col-md">
 							<div class="form-group">
 								<label for="name">Name</label>
-								<input class="form-control" id="name" />
+								<select class="form-control" id="userSelect">
+									<option>User 1</option>
+									<option>User 2</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md">
@@ -47,7 +50,12 @@
 					</div>
 					<div class="row">
 						<div class="col text-center">
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button onclick="createNewUser(event)" class="btn btn-info">
+								Create User
+							</button>
+						</div>
+						<div class="col text-center">
+							<button type="submit" class="btn btn-primary">Create Task</button>
 						</div>
 					</div>
 				</div>
@@ -61,12 +69,12 @@
 								<th>Task</th>
 								<th>Creator</th>
 								<th>Due Date</th>
-								<th>Completion Time</th>
+								<th>Completion</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="tableBody">
 							<tr>
 								<td>Finish the ToDo App</td>
 								<td>CiC Students (not Max)</td>
@@ -93,6 +101,7 @@
 		crossorigin="anonymous"
 	></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script>
 		$(() => {
 			// tell jQuery to wait until it's loaded, then attach the datepicker library to the input
@@ -104,18 +113,108 @@
 			evt.preventDefault();
 
 			//get the values from the input fields above
-			const name = $("#name").val();
+			const userID = $("#userSelect").val();
 			const task = $("#task").val();
 			const dueDate = $("#dueDate").val();
 
-			//make a fetch POST request to our backend
-			fetch("http://127.0.0.1:8080/task", {
-				method: "POST",
+			if (!task || !dueDate) {
+				window.alert("Please set all data in the form");
+			} else {
+				$("#task").val("");
+				$("#dueDate").val("");
+
+				// make a fetch POST request to our backend
+				fetch("http://localhost:8080/task", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json" //tell the server we're sending it JSON so it knows to parse it out
+					},
+					//send the fields with the names the server is expecting
+					body: JSON.stringify({ name: task, dueTime: dueDate, userID })
+				})
+					.then(rawJSON => {
+						//parse out the returning JSON string
+						return rawJSON.json();
+					})
+					.then(data => {
+						//we don't use data here, but add a console log to know that it worked
+						console.log(data);
+						updateTasksInHTML(data);
+					});
+			}
+		}
+
+		//similar to above, but just console.log out the returning data
+		fetch("http://localhost:8080/task", {
+			method: "GET"
+		})
+			.then(rawJSON => {
+				return rawJSON.json();
+			})
+			.then(data => {
+				updateTasksInHTML(data);
+			});
+
+		fetch("http://localhost:8080/user", {
+			method: "GET"
+		})
+			.then(rawJSON => {
+				return rawJSON.json();
+			})
+			.then(data => {
+				updateUserDropdown(data);
+			});
+
+		function updateUserDropdown(data) {
+			let contentToUpdate = "";
+			for (const user of data.users) {
+				contentToUpdate += `<option value="${user.id}">${user.name}</option>`;
+			}
+			$("#userSelect").html(contentToUpdate);
+
+			if (data.newUser) {
+				$("#userSelect").val(data.newUser.id);
+			}
+		}
+
+		function updateTasksInHTML(data) {
+			// console.log(data);
+			let contentToUpdate = "";
+			for (const task of data.tasks) {
+				contentToUpdate += `<tr><td>${task.name}</td>
+								<td>${task.User.name}</td>
+								<td>${moment(task.dueTime).format("MMM D")}</td>
+								<td>${
+									task.completionTime
+										? moment(task.completionTime).fromNow()
+										: `<button class="btn btn-success" onclick="markAsCompleted(${
+												task.id
+										  })">Mark as Completed</button>`
+								}</td>
+								<td>
+									<button type="button" class="btn btn-primary" onclick="editTodo(${
+										task.id
+									})">Edit</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-danger" onclick="deleteTodo(${
+										task.id
+									})">Delete</button>
+								</td>
+							</tr>`;
+			}
+
+			$("#tableBody").html(contentToUpdate);
+		}
+
+		function markAsCompleted(id) {
+			fetch("http://localhost:8080/task", {
+				method: "PUT",
 				headers: {
 					"Content-Type": "application/json" //tell the server we're sending it JSON so it knows to parse it out
 				},
 				//send the fields with the names the server is expecting
-				body: JSON.stringify({ name: task, dueTime: dueDate, userName: name })
+				body: JSON.stringify({ id: id })
 			})
 				.then(rawJSON => {
 					//parse out the returning JSON string
@@ -123,19 +222,84 @@
 				})
 				.then(data => {
 					//we don't use data here, but add a console log to know that it worked
-					console.log("fetch worked");
+					console.log(data);
+					updateTasksInHTML(data);
 				});
 		}
 
-		//similar to above, but just console.log out the returning data
-		fetch("http://127.0.0.1:8080/task", {
-			method: "GET"
-		})
-			.then(rawJSON => {
-				return rawJSON.json();
+		function editTodo(id) {
+			fetch("http://localhost:8080/task/editName", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json" //tell the server we're sending it JSON so it knows to parse it out
+				},
+				//send the fields with the names the server is expecting
+				body: JSON.stringify({
+					id: id,
+					name: window.prompt("What would you like this task to be called?")
+				})
 			})
-			.then(data => {
-				console.log(data);
-			});
+				.then(rawJSON => {
+					//parse out the returning JSON string
+					return rawJSON.json();
+				})
+				.then(data => {
+					//we don't use data here, but add a console log to know that it worked
+					console.log(data);
+					updateTasksInHTML(data);
+				});
+		}
+
+		function deleteTodo(id) {
+			fetch("http://localhost:8080/task", {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json" //tell the server we're sending it JSON so it knows to parse it out
+				},
+				//send the fields with the names the server is expecting
+				body: JSON.stringify({
+					id: id
+				})
+			})
+				.then(rawJSON => {
+					//parse out the returning JSON string
+					return rawJSON.json();
+				})
+				.then(data => {
+					//we don't use data here, but add a console log to know that it worked
+					console.log(data);
+					updateTasksInHTML(data);
+				});
+		}
+
+		function createNewUser(event) {
+			event.preventDefault();
+
+			const name = window.prompt("What is your username?");
+
+			if (name) {
+				fetch("http://localhost:8080/user", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json" //tell the server we're sending it JSON so it knows to parse it out
+					},
+					//send the fields with the names the server is expecting
+					body: JSON.stringify({
+						name
+					})
+				})
+					.then(rawJSON => {
+						//parse out the returning JSON string
+						return rawJSON.json();
+					})
+					.then(data => {
+						if (data.error) {
+							alert(data.error);
+						} else {
+							updateUserDropdown(data);
+						}
+					});
+			}
+		}
 	</script>
 </html>

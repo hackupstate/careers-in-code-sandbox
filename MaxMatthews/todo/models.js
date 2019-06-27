@@ -25,9 +25,13 @@ module.exports = () => {
 				autoIncrement: true, //we use autoIncrement to tell postgre that it can create our IDs for us
 				primaryKey: true
 			},
-			name: Sequelize.STRING //we don't pass an object here when defining name because we only need the type
+			name: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				unique: true
+			}
 		}),
-		Todo: db.define("Todo", {
+		Todo: db.define("todo", {
 			id: {
 				type: Sequelize.INTEGER.UNSIGNED,
 				autoIncrement: true,
@@ -37,15 +41,17 @@ module.exports = () => {
 			createdAt: Sequelize.DATE,
 			completionTime: Sequelize.DATE,
 			dueTime: Sequelize.DATE,
-			userName: Sequelize.STRING
-			// userID: Sequelize.INTEGER.UNSIGNED //unsigned means it will be a non negative (positive) number
+			// userName: Sequelize.STRING
+			userID: Sequelize.INTEGER.UNSIGNED //unsigned means it will be a non negative (positive) number
 		}),
-		init: () => {
+		init: function() {
+			this.Todo.belongsTo(this.User, {
+				foreignKey: "userID",
+				primaryKey: "id"
+			});
+
 			//this code won't run until we call init in another file.
-			db
-				.sync
-				// { force: true }
-				(); //sync to copy our model structure to the database
+			db.sync(); //sync to copy our model structure to the database
 		}
 	};
 };

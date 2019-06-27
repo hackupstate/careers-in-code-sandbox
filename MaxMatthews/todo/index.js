@@ -30,19 +30,81 @@ app.post("/task", async (req, res) => {
 		name: req.body.name, //req.body is our body from our fetch request
 		createdAt: new Date(), //system generated timestamp
 		dueTime: req.body.dueTime,
-		userName: req.body.userName
+		userID: req.body.userID
 	});
 
 	//every endpoint needs to send something back to the server
-	res.send({ message: "ok" });
+	res.send({
+		tasks: await models.Todo.findAll({
+			order: [["completionTime", "DESC"]],
+			include: [{ model: models.User }]
+		})
+	});
+});
+
+app.delete("/task", async (req, res) => {
+	const todo = await models.Todo.findByPk(req.body.id);
+	await todo.destroy();
+
+	res.send({
+		tasks: await models.Todo.findAll({
+			order: [["completionTime", "DESC"]],
+			include: [{ model: models.User }]
+		})
+	});
+});
+
+app.put("/task/editName", async (req, res) => {
+	const todo = await models.Todo.findByPk(req.body.id);
+	todo.name = req.body.name;
+	await todo.save();
+
+	res.send({
+		tasks: await models.Todo.findAll({
+			order: [["completionTime", "DESC"]],
+			include: [{ model: models.User }]
+		})
+	});
+});
+
+app.put("/task", async (req, res) => {
+	const todo = await models.Todo.findByPk(req.body.id);
+	todo.completionTime = new Date();
+	await todo.save();
+
+	res.send({
+		tasks: await models.Todo.findAll({
+			order: [["completionTime", "DESC"]],
+			include: [{ model: models.User }]
+		})
+	});
 });
 
 app.get("/task", async (req, res) => {
 	//go to the DB using the model, get all the tasks...
-	const tasks = await models.Todo.findAll();
+	const tasks = await models.Todo.findAll({
+		order: [["completionTime", "DESC"]],
+		include: [{ model: models.User }]
+	});
 
 	/////then send them back using JSON
 	res.send({ tasks }); //note, {tasks} is the equivalent of {tasks: tasks}
+});
+
+app.post("/user", async (req, res) => {
+	try {
+		const newUser = await models.User.create({
+			name: req.body.name
+		});
+
+		res.send({ users: await models.User.findAll(), newUser });
+	} catch (e) {
+		res.send({ error: "Name already exists. Please create another one." });
+	}
+});
+
+app.get("/user", async (req, res) => {
+	res.send({ users: await models.User.findAll() });
 });
 
 //tell the server to listen on port 8080 on any IP address
