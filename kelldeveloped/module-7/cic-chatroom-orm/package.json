@@ -1,8 +1,8 @@
 {
-  "name": "chatroom-app",
+  "name": "chatroom-orm",
   "version": "1.0.0",
   "description": "",
-  "main": "theFirstServer.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -16,7 +16,7 @@
     "fs": "0.0.1-security",
     "moment": "^2.24.0",
     "pg": "^7.11.0",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^5.8.9"
+    "sequelize": "^5.8.10",
+    "sequelize-cli": "^5.5.0"
   }
 }

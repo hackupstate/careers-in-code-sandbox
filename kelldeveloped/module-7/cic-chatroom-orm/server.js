@@ -5,7 +5,7 @@ const bodyparser = require('body-parser');
 const moment = require('moment');
 const fs = require('fs');
 
-const dbConfig = require('./config/config.json');
+const dbConfig = require('./config/config.json.js.js');
 
 const Sequelize = require('sequelize');
 const db = new Sequelize(
