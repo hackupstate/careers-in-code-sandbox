@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>To Do</title>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control" id="name" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="task">Task</label>
+              <input class="form-control" id="task" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+      <div class="row" style="margin-top: 20px">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Creator</th>
+                <th>Due Date</th>
+                <th>Completion Time</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Finish the Todo App</td>
+                <td>CIC students</td>
+                <td>6/25/19</td>
+                <td></td>
+                <td>
+                  <button type="button" class="btn btn-primary">Edit</button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger">Danger</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    const newTask = evt => {
+      evt.preventDefault();
+
+      console.log("new task");
+    };
+  </script>
+</html>
