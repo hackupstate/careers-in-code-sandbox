@@ -1,13 +1,31 @@
-import React from 'react';
-import Hello from './Hello.jsx';
-import Info from './Info.jsx';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello />
-    <Info />
-  </div>
-);
+import { withTracker } from 'meteor/react-media-data';
+import { Feedback } from "../api/feedback";
 
-export default App;
+class App extends Component {
+  render() {
+    return (
+      <div className="container">
+        <h1> Welcome to Meteor! </h1>
+      </div>
+    );
+  }
+}
+
+render() {
+  return (
+    <div className="Container">
+      <form >
+
+      </form>
+    </div>
+  )
+};
+
+export default withTracker(() => {
+  return {
+    feedback: Feedback.find({}).fetch()
+  };
+})(App);
