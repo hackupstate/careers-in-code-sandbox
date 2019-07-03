@@ -6,7 +6,6 @@ export default class HelloWorld extends Component {
 		return (
 			<div className="container">
 				<h1>HelloWorld</h1>
-				<img src="/cat.jpeg" />
 			</div>
 		);
 	}
