@@ -53,7 +53,7 @@ class App extends Component {
     this.setState({ filteredResults });
   };
 
-  genereateTableRow = feedback => {
+  generateTableRow = feedback => {
     return (
       <tr key={feedback._id}>
         <td>{feedback.studentID}</td>
@@ -121,7 +121,7 @@ class App extends Component {
                 {this.state.filteredResults.length > 0 ? this.state.filteredResults.map(feedback => {
                   return this.generateTableRow(feedback);
                 }): this.props.feedback.map(feedback => {
-                  return this.genereateTableRow(feedback);
+                  return this.generateTableRow(feedback);
                 })}
               </tbody>
             </table>
