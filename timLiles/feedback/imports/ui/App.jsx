@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import { withTracker } from "meteor/react-meteor-data";
-import { Feedback } from "../api/feedback";
+import { Feedback } from "../api/feedback.js";
 import moment from "moment";
 import AccountsUIWrapper from "./AccountsUIWrapper";
 import { Meteor } from "meteor/meteor";
