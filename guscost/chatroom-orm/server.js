@@ -33,7 +33,7 @@ User.prototype.sendMessage = function(text) {
 // NOTE: we are using migrations now! No need for this!
 // // If "force" is "true", this will tear down & 
 // // recreate all tables (including the data!)
-// db.sync({ force: false });
+db.sync({ force: true });
 
 // Create a new Express app
 const app = express(); 
