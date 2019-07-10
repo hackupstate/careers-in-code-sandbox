@@ -9,12 +9,12 @@ const dbConfig = require('./config/config.json');
 
 const Sequelize = require('sequelize');
 const db = new Sequelize(
-  dbConfig.development.database,
-  dbConfig.development.username,
-  dbConfig.development.password,
+  dbConfig[process.env.NODE_ENV].database,
+  dbConfig[process.env.NODE_ENV].username,
+  dbConfig[process.env.NODE_ENV].password,
   {
-    host: dbConfig.development.host,
-    dialect: dbConfig.development.dialect,
+    host: dbConfig[process.env.NODE_ENV].host,
+    dialect: dbConfig[process.env.NODE_ENV].dialect,
     pool: {
       max: 5,
       min: 0,
