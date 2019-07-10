@@ -5,16 +5,14 @@ const bodyparser = require('body-parser');
 const moment = require('moment');
 const fs = require('fs');
 
-const dbConfig = require('./config/config.json');
-
 const Sequelize = require('sequelize');
 const db = new Sequelize(
-  dbConfig.development.database,
-  dbConfig.development.username,
-  dbConfig.development.password,
+  process.env.DATABASE_NAME,
+  process.env.DATABASE_USER,
+  process.env.DATABASE_PASSWORD,
   {
-    host: dbConfig.development.host,
-    dialect: dbConfig.development.dialect,
+    host: process.env.DATABASE_HOST,
+    dialect: process.env.DATABASE_DIALECT,
     pool: {
       max: 5,
       min: 0,
@@ -30,10 +28,10 @@ User.prototype.sendMessage = function(text) {
   return Message.create({ userId: this.id, text: text });
 }
 
-// NOTE: we are using migrations now! No need for this!
+// NOTE: we are using migrations now! Sequelize won't even work like this anymore!
 // // If "force" is "true", this will tear down & 
 // // recreate all tables (including the data!)
-db.sync({ force: true });
+//db.sync({ force: true });
 
 // Create a new Express app
 const app = express(); 
