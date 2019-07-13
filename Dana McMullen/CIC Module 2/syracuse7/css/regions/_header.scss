@@ -1,0 +1,19 @@
+header{
+    background-color: black;
+    color:white;
+    padding: 1rem; 
+    margin: 0 auto;
+    .header-row{//this is the syracuse.com banner at top
+      display: flex;//sits the items side by side
+      justify-content: space-between;//spreads the items out
+      align-items: center;//items will center vertically
+    }
+    .header-icon{//there are 2 of these, one is bars, the other is search, bc is white
+      width:30px;
+      height: auto;
+    }
+    .logo{//the image syracuse.com is the logo
+      width: 200px;
+      height: auto;
+    }
+  }

@@ -1,0 +1,49 @@
+.article {
+    h2 {
+    font-family: $primaryFont;
+    font-size: 3rem;
+    color: white;
+    font-weight: bold;
+    // margin-bottom: 1rem;
+    }
+    h3 {
+        background-color: $syrOrange;
+        color: white;
+        font-family: $primaryFont;
+        font-size: .75rem;
+        font-weight: bold;
+        display: inline-block;
+        padding: .5rem;
+        border-radius: 50px;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+    }
+    h4 {
+        font-family: $primaryFont;
+        font-size: 1rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        .article-icon img {
+            width: 1rem;
+            height:auto;
+            margin-right: .5 rem;
+        }
+        .author-img {
+            width: 50px;
+            height: 50px;
+            margin-right: .5rem;
+            margin-left: 1rem;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+    }
+    
+    p {
+        font-family: $primaryFont;
+        font-size: 1rem;
+        color: white;
+        font-weight: 1rem;
+        margin-bottom: 1rem;
+    }
+}
