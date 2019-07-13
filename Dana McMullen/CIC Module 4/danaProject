@@ -1,0 +1,14 @@
+// Create a button 
+var button = document.createElement('button');
+button.innerText = 'CLICK ME'
+
+// Inject into document
+document.body.appendChild(button)
+
+// Create a paragraph
+var p = document.createElement('p');
+p.innerText = "This is a paragraph";
+document.body.appendChild(p);
+p.onmouseover = function(event){
+  console.log('paragraph hovered over')
+}
