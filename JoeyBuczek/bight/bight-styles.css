@@ -1,0 +1,62 @@
+/* All the styles for this application, imported via the index.js file */
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.photo-bg {
+  background: url(https://images.unsplash.com/photo-1500478909307-0b93d3b6f71a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80);
+  background-size: cover;
+  height: 100vh;
+}
+.home-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+.home-title {
+  text-align: center;
+  margin-top: 10vh;
+  color: #f4f4f4;
+}
+.home-subtitle {
+  text-align: center;
+  color: #f4f4f4;
+  margin: 0px;
+}
+.inventory-page,
+.shipments-page {
+  height: 87vh;
+  width: 95vw;
+  background: #fff;
+  position: relative;
+  top: 75px;
+  left: 20px;
+  padding: 20px;
+  opacity: 0.97;
+  border-radius: 10px;
+}
+.table-heading {
+  color: darkgrey;
+}
+.table-heading.sortable {
+  cursor: pointer;
+}
+.column-heading,
+.received {
+  color: darkgrey;
+}
+.received {
+  font-style: italic;
+}
+.product-page {
+  height: 100vh;
+  background-size: cover !important;
+  padding: 70px 20px 20px;
+}
+.product-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+}
