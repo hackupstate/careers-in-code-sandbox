@@ -63,6 +63,7 @@ export default class App extends Component {
 			fetch("http://localhost:5000/login", {
 				method: "POST",
 				headers: { "Content-type": "application/json" },
+				credentials: "include",
 				body: JSON.stringify({
 					username: this.state.loginUsername,
 					password: this.state.loginPassword
@@ -80,6 +81,42 @@ export default class App extends Component {
 					console.log(data);
 				});
 		}
+	};
+
+	checkLogin = () => {
+		fetch("http://localhost:5000/add", {
+			method: "POST",
+			headers: { "Content-type": "application/json" },
+			credentials: "include",
+			mode: "cors",
+			body: JSON.stringify({
+				num1: 1,
+				num2: 2,
+				username: this.state.loginUsername,
+				password: this.state.loginPassword
+			})
+		})
+			.then(rawJSON => {
+				return rawJSON.json();
+			})
+			.then(data => {
+				this.setState({ result: data.result });
+			});
+	};
+
+	logout = () => {
+		fetch("http://localhost:5000/logout", {
+			method: "POST",
+			headers: { "Content-type": "application/json" },
+			credentials: "include",
+			mode: "cors"
+		})
+			.then(rawJSON => {
+				return rawJSON.json();
+			})
+			.then(data => {
+				console.log("user is logged out");
+			});
 	};
 
 	render() {
@@ -162,7 +199,16 @@ export default class App extends Component {
 							<Button color="success" onClick={this.login}>
 								Login
 							</Button>
+							<Button color="danger" onClick={this.logout}>
+								Logout
+							</Button>
 						</form>
+					</Col>
+				</Row>
+				<Row style={{ marginTop: 25 }}>
+					<Col>
+						<Button onClick={this.checkLogin}>Am I Logged In?</Button>
+						<p>{this.state.result}</p>
 					</Col>
 				</Row>
 			</Container>
