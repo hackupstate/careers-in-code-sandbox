@@ -1,0 +1,87 @@
+h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+body{
+    align-self : center;
+    background-color: black;
+    font-size: 16px;
+    }
+//     // .container{//for general purpose style, this style will be re-used on showcase, trending, banner, footer, header and main   
+//     //     .showcase-content{
+//     //         background-color: indigo;
+//     //     }
+//     //     .banner-content{
+//     //         background-color: orange;
+//     //     }
+//     //     .trending-content{
+//     //         background-color: lime;
+//     //     }
+//     //     .footer-content{
+//     //         background-color: teal;
+//     //     }
+.container { 
+    width: 100%;
+    // background-color: black;
+    // @include breakpoint(XS) {
+    //     width: 85%;
+    //     margin: 0 auto;
+    //     background-color: rgb(8, 8, 8);
+    // }   
+    @include breakpoint(sm) {
+        width: 85%;
+        margin: 0 auto;
+        
+    }
+    @include breakpoint(md) {
+        width: 80%;
+        margin: 0 auto;
+        // background-color: yellowgreen;
+    }
+    @include breakpoint(lg) {
+        width: 95%;
+        margin: 0 auto;
+        // background-color: rgb(50, 156, 205);
+    }
+}
+.responsive-img {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.responsive-img2 {
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+// .responsive-img{//this helps center image in this section
+//     width: 100%;
+//     height: auto;
+// }
+// //all the code below has been commented out because of the beast mix-in is being passed into this code
+// //tablet zone view if at least 768 px, backgrnd is green
+// // @media (min-width:768px){
+// //     .container {
+// //         background-color: orange;
+// //         width: 96%;
+// //         margin: 0 auto;
+// //     }
+// // }
+// // //desktop view if at least 1000px, body background will turn the color indicated
+// // @media (min-width:1000px){
+// //     body{
+// //         background-color: black;
+// //         color: white;
+// //     }
+// //     .container {
+// //         width: 1000px;
+// //         margin: 0 auto;
+// //         color: turquoise;
+// //     }
+// //     .showcase {
+// //         width: 100%;
+// //         margin: 0 auto;//to center the section on page, dont have to write px after 0.
+// //     }
+// // }

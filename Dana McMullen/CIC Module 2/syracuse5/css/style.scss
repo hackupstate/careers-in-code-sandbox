@@ -1,0 +1,14 @@
+@import
+    'base/normalize',
+    'base/mixins',
+    'base/variables',
+    'base/foundation';
+ @import
+    'components/article';
+ @import
+    'regions/header',
+    'regions/banner',
+    'regions/article',
+    'regions/footer';
+@import
+    'views/home';

@@ -1,0 +1,35 @@
+h1 {
+	@include buildFont(Arial,60px,limegreen);
+}
+h2 {
+	@include buildFont(Georgia, 48px, red);
+}
+
+.showcase {
+	background-color: black;
+	color: white;
+	.primary {
+		background-color: purple;
+		min-height: 500px;
+	}
+	.showcase-row {
+		display: flex;
+	}
+	.secondary {
+		width: 50%;
+		min-height: 200px;
+		background-color: orange; 
+	}
+	.showcase-right {
+		width: 50%;
+		min-height: 200px;
+		background-color: yellow;
+		display: flex;
+		flex-wrap: wrap;
+		.tertiary {
+			width: 50%;
+			min-height: 100px;
+			background-color: blue;
+		}
+	}
+}

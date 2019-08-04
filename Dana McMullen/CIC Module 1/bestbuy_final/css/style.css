@@ -1,0 +1,80 @@
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: yellow;
+}
+
+header {
+	background-color: #0046BE;
+	padding: 20px;
+	color: white;
+}
+.logo {
+	width: 125px;
+	height: auto;
+}
+main {
+	background-color: white;
+	color: black;
+}
+.showcase {
+	background-color: pink;
+	margin-bottom: 40px;
+}
+.showcase-img {
+	width: 100%;
+	height: auto;
+}
+.showcase-content {
+	padding: 20px;
+}
+h1 {
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 28px;
+	color: black;
+	margin-bottom: 10px;
+}
+.cta {
+	background-color: #0046BE;
+	padding: 10px;
+	color: white;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 18px;
+	border: 0;
+}
+.main-content {
+	padding: 20px;
+}
+h2 {
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 24px;
+}
+.offer {
+	background-color: limegreen;
+	display: flex;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #a4a4a4;
+}
+.offer-img {
+	width: 50%;
+	margin-right: 20px;
+}
+.offer-img img {
+	width: 100%;
+	height: auto;
+}
+.offer-content {
+	width: 50%;
+}
+footer {
+	background-color: #c4c4c4;
+	padding: 20px;
+	color: black;
+}

@@ -1,0 +1,47 @@
+header {
+	background-color: black;
+	color: white;
+	padding: 10px;
+}
+header {
+	.header-row {
+		padding: 20px 0 15px;
+		display: flex;
+		justify-content: space-between;
+	}
+	.header-icon {
+		font-size: 24px;
+	}
+	.search-bar {
+		height:50px;
+		right:0;
+		bottom:-60px;
+		background-color: white;
+		width:100%;
+		border: 1px solid gray;
+		display:none;
+		#search {
+			width:100%;
+			display:flex;
+			justify-content: space-between;
+		}
+		input {
+			border:none;
+			width: 75%;
+			height:50px;
+			padding:0;
+			&:placeholder-shown {
+				padding-left: 2%;
+			}
+		}
+		button {
+			height:50px;
+			width:15%;
+			padding:0 2%;
+			vertical-align: middle;
+			border: none;
+			background-color:orange;
+
+		}
+	}
+}

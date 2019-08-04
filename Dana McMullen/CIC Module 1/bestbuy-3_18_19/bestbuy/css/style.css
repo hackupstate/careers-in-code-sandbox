@@ -1,0 +1,97 @@
+h1, h2, h3, h4, h5, h6, p {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: yellow;
+}
+.responsive-img {
+	width: 100%;
+	height: auto;
+}
+header {
+	background-color: #0046BE;
+	padding: 20px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.logo {
+	width: 100px;
+	height: auto;
+}
+.menuIcon {
+	/* background-color: orange; */
+	font-size: 24px;
+	color: white;
+	width: 50px;
+	height: 50px;
+	line-height: 50px; /* vertically centers the icon */
+	text-align: center; /* left to right centering */
+}
+.searchBar {
+	background-color: white;
+	padding: 5px;
+	border: 0;
+	font-family: Arial;
+	height: 50px;
+}
+main {
+	background-color: white;
+	color: black;
+}
+h2 {
+	background-color: orange;
+	margin-bottom: 50px;
+}
+.showcase {
+	background-color: aqua;
+	margin-bottom: 40px;
+}
+
+.showcase-content {
+	padding: 20px;
+}
+.showcase h1 {
+	font-family: Arial;
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.showcase button {
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	background-color: #0046BE;
+	padding: 10px;
+	border: 0;
+}
+.content-padding {
+	padding: 20px;
+}
+.offer {
+	display: flex;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px solid #c4c4c4;
+	background-color: limegreen;
+}
+.offer-img {
+	width: 50%;
+	margin-right: 20px;
+}
+.offer-img img {
+	width: 100%;
+	height: auto;
+}
+.offer-content {
+	width: 50%;
+}
+footer {
+	background-color: #c4c4c4;
+	padding: 20px;
+	color: black;
+}
