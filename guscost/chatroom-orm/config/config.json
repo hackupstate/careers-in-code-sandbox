@@ -16,8 +16,8 @@
   "production": {
     "username": "root",
     "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "database": "chatroom",
+    "host": "cic-project-database.czempms0ku5m.us-east-2.rds.amazonaws.com",
     "dialect": "postgres"
   }
 }

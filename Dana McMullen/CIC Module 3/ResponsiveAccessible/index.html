@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Responsive and Accessible</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+</head>
+<body>
+
+    <body style="font-family:Verdana;color:black;">
+
+        <div style="background-color:#e5e5e5;padding:15px;">
+          <h1>Final accessibility and design assignment</h1>
+          <h2>Instructor: Zoe K.</h2>
+          <h2>Due: April 5th, 2019</h2>
+          <img 
+          class = "header"
+          src="images/seeing-ai.png" alt="picture of seeing Artificial Intelligence App on a phone">
+          <P>Design a mobile responsive front page of a magazine or a magazine article. It should be accessible and include heuristics and design principles that we have gone over this week.
+              <p>It should include the following:</p>
+              <ul>
+              <li>Grouped content with (Title, Author, Photo, Main text) -- decide on an html hierarchy that is accessible and change the design in css if it makes more sense on all devices)</li>
+              <li>At least one form input and a button to sign up for a newsletter</li>
+              <li>Semantic HTML</li>
+              <li>Good use of color and typography</li>
+              <li>Styled with Sass</li>
+              
+              <p>You should display your elements in an accessible hierarchy and use css to display the visual design the way you want. Keep in mind device agnostic design / reusable patterns that was discussed in the video by Ethan Marcotte.</p> 
+              
+            <p>If you create your site on Glitch, send me the link. If you create it with a text editor, zip the files and attach them.</p>
+            </ul>
+        </div>
+        
+        <div style="overflow:auto">
+          <div class="menu">
+            <a href="https://classroom.google.com/c/MzA3Mjc4Mjc2NzZa">Module 1</a>
+            <a href="https://classroom.google.com/c/MzA3Mjc4Mjc2NzZa">Module 2</a>
+            <a href="https://classroom.google.com/c/MzA3Mjc4Mjc2NzZa">Module 3</a>
+            <a href="https://classroom.google.com/c/MzA3Mjc4Mjc2NzZa">Module 4</a>
+          </div>
+        
+          <div class="main">
+            <h2>Lorum Ipsum</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+          </div>
+        
+          <div class="right">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+          </div>
+        </div>
+        
+        <div style="background-color:greenyellow;text-align:center;padding:10px;margin-top:7px;">© Dana McMullen with Careers In Code 2019</div>
+
+
+<div class="container">
+  <form action="action_page.php">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Enter Your First Name">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Enter Your Last Name">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="United States">United States</option>
+      <option value="canada">Canada</option>
+      <option value="Africa">Africa</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something for your subject" style="height:300px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+</body>
+</html>

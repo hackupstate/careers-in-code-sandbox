@@ -1,0 +1,40 @@
+#calculator {
+    align-items: center;
+    label {
+        display: block;//make this item fill 100% of this block of space
+        background-color: gray;
+        font-family: $secondaryFont;
+        font-size: 1.1rem;
+        font-style: italic;
+        margin-bottom: .5rem;
+        align-self: center;
+    }
+    .prefix {
+        font-family: $primaryFont;
+        font-size: 1.5rem;
+        color: $gray;
+        font-weight: bold;
+        margin-right: .5rem;
+    }
+    .input-group { 
+        border-bottom: 1px solid black;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+    .input-row{
+        display: flex;
+         align-items: center;
+        // text-align: center;
+    }
+    .input [type = "number"]  { 
+        background-color: white;
+        padding: 1rem;
+        color: black;
+        border: 1px solid $gray;
+        width: 100%;
+        font-family: $primaryFont;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}

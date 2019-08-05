@@ -1,0 +1,66 @@
+.showcase {
+    background-color: black;       
+    color: white;
+        .primary {
+            position: relative;
+            .article-text{
+                background-color: limegreen;
+                @include breakpoint(sm) {
+                position: absolute;
+                bottom: 1rem;
+                left: 1rem;
+            }
+        }
+    }
+}
+        .showcase-row{
+            display: flex;
+            .secondary{
+                background: limegreen;
+                min-height: 100px;
+                width: 50%;
+            }
+        .showcase-right{
+            display: flex;
+            flex-wrap: wrap;
+            width: 50%;
+            min-height: 200px;
+            background-color: yellow;
+            .tertiary{
+            flex-wrap: wrap;
+            width: 50%;
+            min-height: 100px;
+            background-color: silver;
+            }
+        }
+    }
+.trending {
+    background-color: limegreen;
+    color: white;
+    padding: 1rem 0;
+    h2 {
+        font-family: $primaryFont;
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .trending-row {
+        display: flex;
+        flex-wrap: wrap;
+        // margin: .5rem;
+        .trending-item {
+            background-color: limegreen;
+            width: calc((100% - 2rem)/3);
+            margin: .5rem;
+            &:nth-child(3n+1) {
+                background-color: red;
+                margin-left: 0;
+            }
+            &:nth-child(3n+3) {
+                background-color: aqua;
+                margin-right: 0;
+            }
+        }
+    }
+}
+}

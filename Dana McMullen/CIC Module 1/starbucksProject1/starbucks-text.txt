@@ -1,0 +1,31 @@
+Starbucks Espresso Beverages
+Caffè Americano
+$3.99
+Rich, full-bodied espresso with hot water in true European style.
+Caffè Latte
+$3.99
+Rich, full-bodied espresso in steamed milk, lightly topped with foam.
+Caffè Mocha
+$3.99
+Espresso with bittersweet mocha sauce and steamed milk. Topped with sweetened whipped cream.
+Cappuccino
+$3.99
+Espresso with steamed milk, topped with a deep layer of foam.
+Caramel Macchiato
+$3.99
+Freshly steamed milk with vanilla-flavored syrup, marked with espresso and finished with caramel sauce.
+Cinnamon Dolce Latte
+$3.99
+Espresso with steamed milk and cinnamon dolce flavored syrup. Topped with sweetened whipped cream and cinnamon dolce topping.
+Espresso
+$3.99
+Made with our own Espresso Roast.
+Espresso Con Panna
+$3.99
+Espresso topped with whipped cream.
+Espresso Macchiato
+$3.99
+Espresso topped with steamed milk foam.
+Flavored Latte
+$3.99
+Espresso and steamed milk, flavored with syrup.
