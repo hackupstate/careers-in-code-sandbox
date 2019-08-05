@@ -19,9 +19,11 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "create-react-app": "^3.0.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "moment": "^2.24.0",
+    "react-router-dom": "^5.0.1",
     "redis": "^2.8.0",
     "sequelize": "^5.8.12"
   }

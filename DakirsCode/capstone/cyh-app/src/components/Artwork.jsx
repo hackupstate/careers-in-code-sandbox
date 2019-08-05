@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
 
 export default class Artwork extends React.Component {
   constructor(props) {
@@ -6,9 +7,13 @@ export default class Artwork extends React.Component {
   }
   render() {
     return (
-      <div className="container">
-        <h1>artwork</h1>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <h1>artwork</h1>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

@@ -13,10 +13,10 @@ app.get("/", (req, res) => {
     res.send("yeah boy its ya server cominga at ya");
 })
 
-app.put("/test", (req, res) => {
+app.post("/test", (req, res) => {
     console.log(req.body)
     res.send({
-        dakir: "thompson"
+        backend: "from backend"
     });
 })
 
