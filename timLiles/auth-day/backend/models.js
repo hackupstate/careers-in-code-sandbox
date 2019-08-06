@@ -3,7 +3,8 @@ module.exports = () => {
 
     const db = new Sequelize("timothyliles", "timothyliles", "", {
         host: "127.0.0.1",
-        dialect: "postgres"
+        dialect: "postgres",
+        logging: false
     });
 
     return {
