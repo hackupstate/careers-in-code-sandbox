@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route, Switch } from "react-route";
+import { Router, Route, Switch } from "react-router";
 import { createBrowserHistory } from "history";
 
 import App from "./App";

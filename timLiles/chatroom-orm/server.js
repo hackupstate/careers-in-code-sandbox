@@ -43,7 +43,7 @@ const Message = db.define('message', {
 
 // If "force" is "true", this will tear down & 
 // recreate all tables (including the data!)
-db.sync({ force: false });
+//db.sync({ force: false });
 
 // Create a new Express app
 const app = express(); 
