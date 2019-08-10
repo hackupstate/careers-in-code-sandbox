@@ -23,8 +23,10 @@ export default class MainPage extends React.Component {
 					</Col>
 				</Row>
 				<Row>
-					<Col>{/* {" "}
-						<WelcomePage />{" "} */}</Col>
+					<Col>
+						{" "}
+						<WelcomePage />{" "}
+					</Col>
 				</Row>
 				<Col>
 					<div className="content">

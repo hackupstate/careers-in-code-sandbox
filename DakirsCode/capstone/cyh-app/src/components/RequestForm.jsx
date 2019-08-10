@@ -76,16 +76,14 @@ export default class RequestForm extends React.Component {
 								</Label>
 								<Col sm={10}>
 									<Input type="file" name="file" id="File" />
-									<FormText color="red">
+									{/* <FormText color="red">
 										This is some placeholder block-level help text for the above
 										input. It's a bit lighter and easily wraps to a new line.
-									</FormText>
+									</FormText> */}
 								</Col>
 							</FormGroup>
 							<FormGroup tag="fieldset" row>
-								<legend className="col-form-label col-sm-2">
-									Radio Buttons
-								</legend>
+								<legend className="col-form-label col-sm-2" />
 								<Col sm={10}>
 									<FormGroup check>
 										<Label check>

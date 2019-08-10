@@ -1,0 +1,69 @@
+{
+  "products": [
+    {
+      "id": "121",
+      "name": "Backpack",
+      "description": "Also called knapsack, rucksack, rucksac, pack, sackpack, or backsack. A cloth sack carried on one's back and secured with two straps that go over the shoulders, but it can have an external frame, internal frame, and there are bodypacks.",
+      "image": "https://images.unsplash.com/photo-1509762774605-f07235a08f1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+    },
+    {
+      "id": "122",
+      "name": "Hiking Boots",
+      "description": "They are one of the most important items of hiking gear, since their quality and durability can determine a hiker's ability to walk long distances without injury. Hiking boots are constructed to provide comfort for walking considerable distance over rough terrain.",
+      "image": "https://images.unsplash.com/photo-1520219306100-ec4afeeefe58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=993&q=80"
+    },
+    {
+      "id": "123",
+      "name": "Canteen",
+      "description": "A canteen is a drinking water bottle designed to be used by hikers, campers, soldiers and workers in the field. It is usually fitted with a shoulder strap or means for fastening it to a belt, and may be covered with a cloth bag and padding to protect the bottle and insulate the contents.",
+      "image": "https://images.unsplash.com/photo-1530138295342-c7c921529ee9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80"
+    }
+  ],
+  "inventory": [
+    {
+      "id": "121",
+      "product": "Backpack",
+      "quantity": 5
+    },
+    {
+      "id": "122",
+      "product": "Hiking Boots",
+      "quantity": 100
+    },
+    {
+      "id": "123",
+      "product": "Canteen",
+      "quantity": 12
+    }
+  ],
+  "shipments": [
+    {
+      "id": "677",
+      "productId": "121",
+      "product": "Backpack",
+      "quantity": 5,
+      "isReceived": true
+    },
+    {
+      "id": "678",
+      "productId": "121",
+      "product": "Backpack",
+      "quantity": 15,
+      "isReceived": false
+    },
+    {
+      "id": "679",
+      "productId": "122",
+      "product": "Hiking Boots",
+      "quantity": 50,
+      "isReceived": false
+    },
+    {
+      "id": "680",
+      "productId": "123",
+      "product": "Canteen",
+      "quantity": 10,
+      "isReceived": false
+    }
+  ]
+}
