@@ -1,9 +1,11 @@
 .WelcomePage {
-	justify-content: center;
+	display: flex;
 	border: blue solid 5px;
-	min-height: 100vh;
-	min-width: 100vw;
+	height: 100vh;
 	color: white;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 
 	/* background-image: url("./media/perfect-Imperfections.jpg");
   background-repeat: no-repeat;

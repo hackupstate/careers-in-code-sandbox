@@ -4,9 +4,9 @@
 	border: red solid 5px;
 	width: 100vw;
 	height: 100vh;
-	background: url("../media/perfect-Imperfections.jpg") no-repeat center center
+	/* background: url("../media/perfect-Imperfections.jpg") no-repeat center center
 		fixed;
-	background-size: cover;
+	background-size: cover; */
 }
 
 .App-logo {
