@@ -1,25 +1,60 @@
-import React from "react";
-import Header from "./Header";
-import Home from "./Home";
-import { HashRouter as Router, Route } from "react-router-dom";
-import Inventory from "./Inventory";
-import Shipments from "./Shipments";
-import Product from "./Product";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavItem,
+  NavLink,
+  NavbarBrand,
+  NavbarToggler,
+  Collapse
+} from "reactstrap";
+import { updateBrand } from "../actions/actionCreators";
 
-function App() {
+function Header(props) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="App">
-      <Router>
-        <Header />
-        <div className="photo-bg">
-          <Route exact path="/" component={Home} />
-          <Route path="/inventory" component={Inventory} />
-          <Route path="/shipments" component={Shipments} />
-          <Route path="/product/:id" component={Product} />
-        </div>
-      </Router>
+    <div>
+      <Navbar color="dark" dark fixed="top" expand="sm">
+        <NavbarBrand href="/">
+          <span className="text-warning">{props.appState.brand}</span>
+        </NavbarBrand>
+        <NavbarToggler onClick={() => setOpen(!open)} />
+        <Collapse isOpen={open} navbar>
+          <Nav navbar>
+            <NavItem>
+              <NavLink tag={Link} to="/inventory">
+                {props.appState.inventoryLink}
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/shipments">
+                Shipments
+              </NavLink>
+            </NavItem>
+            <button
+              onClick={() => {
+                updateBrand(props.dispatch);
+              }}
+            >
+              Change Brandname
+            </button>
+            <button
+              onClick={() => {
+                props.dispatch({
+                  type: "UPDATE_INVENTORY_LINK",
+                  payload: "Inventory"
+                });
+              }}
+            >
+              Change Inventory Link Text
+            </button>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
 }
 
-export default App;
+export default Header;
