@@ -1,17 +1,19 @@
 .WelcomePage {
-  justify-content: center;
-  border: blue solid 5px;
-  min-height: 100vh;
-  min-width: 100vw;
-  color: white;
+	display: flex;
+	border: blue solid 5px;
+	height: 100vh;
+	color: white;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 
-  /* background-image: url("./media/perfect-Imperfections.jpg");
+	/* background-image: url("./media/perfect-Imperfections.jpg");
   background-repeat: no-repeat;
   background-position:; */
-  background: url('../media/perfect-Imperfections.jpg') no-repeat center center fixed;
-  background-size: cover;
+	/* background: url('../media/perfect-Imperfections.jpg') no-repeat center center fixed;
+  background-size: cover; */
 
-  /* background-color: #000;
+	/* background-color: #000;
   background-image: url(images/bg.gif);
   background-repeat: no-repeat; */
 }

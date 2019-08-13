@@ -1,0 +1,12 @@
+.app {
+	background-image: url(../media/perfect-Imperfections.jpg);
+	background-size: cover;
+	border: green solid 5px;
+	height: 100vh;
+	color: white;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+.content {
+	height: 100vh;
+}
