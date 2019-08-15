@@ -1,19 +1,23 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import React, {useState, useEffect} from "react";
 
-export default class Artwork extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <h1>artwork</h1>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+const Artwork = () => {
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		fetch("https://picsum.photos/v2/list?page=2&limit=20")
+			.then(response => response.json())
+			.then(json => setData(json));
+	}, []);
+	return (
+		<div className="artContianer">
+			{data.map(function(artwork, index) {
+				return (
+					<div key={artwork.id} className="canvas">
+						<img id="art" src={`${artwork.download_url}`} alt="" />
+					</div>
+				);
+			})}
+		</div>
+	);
+};
+export default Artwork;

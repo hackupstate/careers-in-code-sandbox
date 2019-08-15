@@ -7,7 +7,14 @@ export default class ArtistPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            <h1>Artsit Bio Page</h1>
+            <div className="artistBio">
+              <h1>The Artist-Rashad Mustafa</h1>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>this is a paragraph about the artist</p>
           </Col>
         </Row>
       </Container>

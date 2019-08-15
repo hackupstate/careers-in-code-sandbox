@@ -1,12 +1,128 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: whitesmoke;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+/*my css stuff*/
 .app {
-	background-image: url(../media/perfect-Imperfections.jpg);
-	background-size: cover;
+	/* background-image: url(../media/perfect-Imperfections.jpg);
+  background-size: cover; */
 	border: green solid 5px;
 	height: 100vh;
-	color: white;
+	color: red;
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 }
+.title {
+	color: blue;
+	border: yellow solid 5px;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-around; */
+	align-items: center;
+}
+.WelcomePage-Container {
+	height: 93vh;
+	width: 99vw;
+	border: deepskyblue dashed 5px;
+}
+.WelcomePage-Main {
+	width: 100%;
+	height: 100%;
+}
+.WelcomePage-Buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin: 10;
+	height: 100%;
+}
+.WelcomePage-Buttons a:first-of-type {
+	margin-left: 125px !important;
+}
 .content {
+	height: 85vh;
+	border: tan solid 30px;
+	background-image: url(../media/red-pill-blue-pill.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+}
+
+/* for the artwork page*/
+.canvas {
+	min-width: 250px;
+	height: 200px;
+	flex: 1;
+	flex-grow: 1;
+	border: black double 5px;
+	position: relative;
+}
+img {
+	max-height: 100%;
+	max-width: 100%;
+}
+img#art {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.artContianer {
+	display: flex;
+	flex-direction: row;
+	flex-flow: wrap;
+}
+/* .artContainer {
+  border: green solid 5px;
+} */
+.art {
+	height: 50vh;
+	width: 50vw;
+	border: yellow solid 5px;
+}
+.artistBio {
+	background-image: url("../media/perfect-Imperfections.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 300px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+}
+
+/*main page css*/
+.MainPage {
+	color: black;
+	text-align: center;
+	border: red solid 5px;
+	width: 100vw;
 	height: 100vh;
+	/* background: url("../media/perfect-Imperfections.jpg") no-repeat center center
+  fixed;
+	background-size: cover; */
+}
+/* featured art section*/
+.FeaturedArt-Main {
+	height: 85vh;
+	width: 100vw;
+	border: orange solid 5px;
+}
+.FeaturedArt-Child1 {
+	height: 100%;
+	width: 100%;
+	border: orange solid 5px;
 }
