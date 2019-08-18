@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 
+# React client build
+client/build/
+
 # Firebase cache
 .firebase/
 
