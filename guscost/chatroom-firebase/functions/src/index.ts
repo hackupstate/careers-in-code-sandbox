@@ -9,7 +9,7 @@ export const messages = functions.https.onRequest(async (req, res) => {
     const collection = db.collection('messages');
     if (req.method === 'GET') {
       const query = await collection.get(); // .where('text', '==', 'hello')
-      return res.send(query.docs.map(doc => doc.data));
+      return res.send(query.docs.map(doc => doc.data()));
     } else if (req.method === 'POST') {
       await collection.add(req.body);
       return res.sendStatus(200);
