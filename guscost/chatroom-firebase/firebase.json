@@ -7,6 +7,9 @@
   },
   "hosting": {
     "public": "client/build",
+    "predeploy": [
+      "npm --prefix \"client\" run build"
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
