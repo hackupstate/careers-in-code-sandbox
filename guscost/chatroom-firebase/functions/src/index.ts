@@ -17,7 +17,17 @@ export const messages = functions.https.onRequest(async (req, res) => {
         const query = await collection.get(); // .where('text', '==', 'hello')
         return res.send(query.docs.map(doc => doc.data()));
       } else if (req.method === 'POST') {
-        await collection.add(req.body);
+
+        // Very crude validation
+        if (typeof req.body.text !== 'string') { return res.sendStatus(400); }
+        
+        // Save allowed data
+        await collection.add({
+          user_id: 1,           // This should be the authorized user's id
+          text: req.body.text
+        });
+
+        // Return a success code
         return res.sendStatus(200);
       } else {
         return res.sendStatus(405);
