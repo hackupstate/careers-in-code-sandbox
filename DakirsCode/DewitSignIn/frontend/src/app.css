@@ -1,0 +1,6 @@
+.container {
+	text-align: center;
+	border: red solid 5px;
+	justify-content: center;
+	align-items: center;
+}

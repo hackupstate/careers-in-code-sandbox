@@ -17,9 +17,6 @@ export default class App extends React.Component {
 		return (
 			<div className="app">
 				<NavBar />
-				{/* <div className="WelcomePage-Container">
-					<WelcomePage />
-				</div> */}
 				<div className="content">
 					<Switch>
 						<Route path="/RequestForm" component={RequestForm} />

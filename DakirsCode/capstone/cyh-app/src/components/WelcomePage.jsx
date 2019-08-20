@@ -1,6 +1,8 @@
 import React from "react";
 import {Container, Row, Col, Button} from "reactstrap";
 import FeaturedArt from "./FeaturedArt";
+import FeaturedNews from "./FeaturedNews";
+import FeaturedMerch from "./FeaturedMerch";
 
 export default class WelcomePage extends React.Component {
 	render() {
@@ -9,26 +11,19 @@ export default class WelcomePage extends React.Component {
 		};
 		return (
 			<div className="WelcomePage-Main">
-				{/* <h1>Canvas Your Home Headquarters</h1> */}
-				<div className="WelcomePage-Buttons">
-					<Button
-						style={buttonSpacing}
-						className="btn btn-danger btn-lg m-2"
-						href="./Artwork.jsx">
-						Artwork
-					</Button>
-					<Button className="btn btn-warning btn-lg m-4" href="./WelcomePage">
-						T-Shirts and Hoodies
-					</Button>
+				<div className="WelcomePage-Slogan">
+					<h1>Canvas Your Home</h1>
+					<h3>HandPainted Artwork, where you need it</h3>
 				</div>
+
 				<div className="artwork">
 					<FeaturedArt />
 				</div>
 				<div className="artist">
-					<FeaturedArt />
+					<FeaturedNews />
 				</div>
 				<div className="request">
-					<FeaturedArt />
+					<FeaturedMerch />
 				</div>
 			</div>
 		);

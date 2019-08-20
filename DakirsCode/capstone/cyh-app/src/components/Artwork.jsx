@@ -4,7 +4,7 @@ const Artwork = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		fetch("https://picsum.photos/v2/list?page=2&limit=20")
+		fetch("http://localhost:8088/products")
 			.then(response => response.json())
 			.then(json => setData(json));
 	}, []);
@@ -13,7 +13,7 @@ const Artwork = () => {
 			{data.map(function(artwork, index) {
 				return (
 					<div key={artwork.id} className="canvas">
-						<img id="art" src={`${artwork.download_url}`} alt="" />
+						<img id="art" src={`${artwork.url}`} alt="" />
 					</div>
 				);
 			})}
