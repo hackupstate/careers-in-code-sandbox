@@ -1,8 +1,6 @@
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
+	font-family: "Anton", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: whitesmoke;
@@ -19,15 +17,15 @@ code {
 .app {
 	/* background-image: url(../media/perfect-Imperfections.jpg);
   background-size: cover; */
-	border: green solid 5px;
+	/* border: green solid 5px; */
 	height: 100vh;
-	color: red;
+	color: black;
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 }
 .content {
 	height: 92vh;
-	border: tan solid 5px;
+	/* border: tan solid 5px; */
 	/* background-image: url(https://s3.us-east-2.amazonaws.com/canvasyourhome.art/images/customer+with+merch.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%; */
@@ -35,7 +33,7 @@ code {
 }
 .title {
 	color: blue;
-	border: yellow solid 5px;
+	/* border: yellow solid 5px; */
 	display: flex;
 	flex-direction: column;
 	/* justify-content: space-around; */
@@ -107,24 +105,47 @@ img#art {
 .art {
 	height: 50vh;
 	width: 50vw;
-	border: yellow solid 5px;
+	/* border: yellow solid 5px; */
 }
 /*Artist Bio Page */
-.artistBio {
-	background-image: url("../media/perfect-Imperfections.jpg");
-	background-size: contain;
-	background-repeat: no-repeat;
-	width: 300px;
-	height: 300px;
+#artist-L1-main {
+	width: 100vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	/* border: purple solid 5px; */
+}
+#artist-L2-artist-info {
+	/* border: red solid 5px; */
+	display: flex;
+	flex-direction: row;
+}
+#artist-L3-pic {
+	height: 90vh;
+	width: 40%;
+	background-image: url(https://s3.us-east-2.amazonaws.com/canvasyourhome.art/images/the+artist.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+}
+#artist-L3-contact {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	padding: 10px;
+}
+#artist-L2-bio {
+	height: 100vh;
+	width: 100vw;
 }
 
 /*main page css*/
 .MainPage {
 	color: black;
 	text-align: center;
-	border: red solid 5px;
+	/* border: red solid 5px; */
 	width: 100vw;
 	height: 100vh;
 	/* background: url("../media/perfect-Imperfections.jpg") no-repeat center center
@@ -135,18 +156,18 @@ img#art {
 .FeaturedArt-Main {
 	height: 93vh;
 	width: 100vw;
-	border: orange solid 5px;
+	/* border: orange solid 5px; */
 	display: flex;
 }
 .FeaturedArt-Child1 {
 	height: 50%;
 	width: 50%;
-	border: orange solid 5px;
+	/* border: orange solid 5px; */
 }
 .FeaturedArt-Child2 {
 	height: 50%;
 	width: 50%;
-	border: orange solid 5px;
+	/* border: orange solid 5px; */
 }
 .Artwork-Button {
 	background-image: url(https://s3.us-east-2.amazonaws.com/canvasyourhome.art/images/fly+nipsey+husstle.jpg);
@@ -154,7 +175,7 @@ img#art {
 	background-size: 100% 100%;
 	height: 100%;
 	width: 100%;
-	border: red solid 5px;
+	/* ` */
 }
 .Merch-Button {
 	background-image: url(https://s3.us-east-2.amazonaws.com/canvasyourhome.art/images/customer+with+merch.jpg);
