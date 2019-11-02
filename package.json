@@ -26,6 +26,6 @@
     "pg": "^7.12.1",
     "react-router-dom": "^5.0.1",
     "redis": "^2.8.0",
-    "sequelize": "^5.14.0"
+    "sequelize": "^5.15.1"
   }
 }
