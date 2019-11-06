@@ -15,7 +15,7 @@
     "fs": "0.0.1-security",
     "moment": "^2.24.0",
     "pg": "^7.11.0",
-    "sequelize": "^5.8.10"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {},
   "description": ""
