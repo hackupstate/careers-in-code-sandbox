@@ -7,7 +7,7 @@
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-widgets": "^4.4.11",
     "react-widgets-moment": "^4.0.27",
     "reactstrap": "^8.0.1"
